@@ -212,7 +212,7 @@ data/workouts.json         Registros dos treinos (criado/atualizado pelo app)
 
 ## Identidade visual e temas
 
-A interface tem **quatro temas** selecionáveis no header (canto superior direito). A escolha
+A interface tem **cinco temas** selecionáveis no header (canto superior direito). A escolha
 fica salva em `localStorage` (`treino-theme`) e é aplicada antes do primeiro paint, sem flash
 de tema errado.
 
@@ -222,6 +222,7 @@ de tema errado.
 | `meia-noite` | escuro quente, texto claro e verde profundo |
 | `oceano` | claro com primário verde-água e acento âmbar |
 | `ameixa` | claro com primário vinho e acento cobre |
+| `carmim` | escuro avermelhado, primário bordô e acento vermelho vivo |
 
 Todas as partials usam **tokens semânticos** (`bg-surface`, `text-ink`, `border-sand`,
 `bg-moss`, `text-on-primary`...), então a troca de tema vale também para o conteúdo trocado
