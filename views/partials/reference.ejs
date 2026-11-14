@@ -1,5 +1,5 @@
 <div class="max-h-[85vh] overflow-y-auto">
-  <header class="flex items-start justify-between gap-4 border-b border-sand/60 bg-gradient-to-br from-cream/90 via-white to-white p-5">
+  <header class="flex items-start justify-between gap-4 border-b border-sand/60 bg-gradient-to-br from-cream/90 via-surface to-surface p-5">
     <div class="min-w-0">
       <p class="text-[10px] font-semibold uppercase tracking-[0.18em] text-olive">Referência da API</p>
       <h2 class="mt-1 font-display text-xl font-semibold leading-snug text-ink">Músculos, articulações e movimentos</h2>
@@ -23,12 +23,12 @@
   </header>
 
   <% if (error) { %>
-    <div class="bg-white/70 p-5">
+    <div class="bg-surface/70 p-5">
       <p class="text-sm font-semibold text-rose-800">Não foi possível carregar a referência muscular</p>
       <p class="mt-2 rounded-xl border border-rose-200 bg-rose-50 px-3 py-2 text-xs text-rose-700"><%= error %></p>
     </div>
   <% } else { %>
-    <div class="space-y-6 bg-white/70 p-5">
+    <div class="space-y-6 bg-surface/70 p-5">
       <section>
         <div class="flex flex-wrap items-baseline justify-between gap-2">
           <h3 class="text-[10px] font-semibold uppercase tracking-[0.16em] text-olive">Grupos musculares</h3>
@@ -39,7 +39,7 @@
 
         <div class="mt-2 grid gap-2 sm:grid-cols-2">
           <% reference.groups.forEach(function (group) { %>
-            <details class="rounded-2xl border border-sand/70 bg-white px-3 py-2 transition open:border-gold/50 open:bg-cream/70">
+            <details class="rounded-2xl border border-sand/70 bg-surface px-3 py-2 transition open:border-gold/50 open:bg-cream/70">
               <summary class="flex cursor-pointer items-center justify-between gap-2 text-sm font-semibold text-bark marker:text-sage">
                 <span class="truncate"><%= group.name %></span>
                 <span class="shrink-0 text-[10px] font-normal text-olive">
@@ -68,7 +68,7 @@
           </div>
           <div class="mt-2 flex flex-wrap gap-1">
             <% reference.joints.forEach(function (joint) { %>
-              <span class="rounded-full border border-sand bg-white px-2 py-0.5 text-[11px] text-bark"><%= joint %></span>
+              <span class="rounded-full border border-sand bg-surface px-2 py-0.5 text-[11px] text-bark"><%= joint %></span>
             <% }) %>
             <% if (!reference.joints.length) { %>
               <span class="text-[11px] text-olive">Nenhuma articulação retornada.</span>
@@ -83,7 +83,7 @@
           </div>
           <div class="mt-2 flex flex-wrap gap-1">
             <% reference.movements.forEach(function (movement) { %>
-              <span class="rounded-full border border-sand bg-white px-2 py-0.5 text-[11px] text-bark"><%= movement %></span>
+              <span class="rounded-full border border-sand bg-surface px-2 py-0.5 text-[11px] text-bark"><%= movement %></span>
             <% }) %>
             <% if (!reference.movements.length) { %>
               <span class="text-[11px] text-olive">Nenhum movimento retornado.</span>
@@ -98,7 +98,7 @@
     <button
       type="button"
       data-modal-close
-      class="rounded-xl bg-ink px-3.5 py-2 text-xs font-semibold text-cream ring-1 ring-gold/30 transition hover:bg-bark focus:outline-none focus:ring-2 focus:ring-gold/50"
+      class="rounded-xl bg-inverted px-3.5 py-2 text-xs font-semibold text-on-primary ring-1 ring-gold/30 transition hover:bg-bark focus:outline-none focus:ring-2 focus:ring-gold/50"
     >Fechar</button>
   </footer>
 </div>

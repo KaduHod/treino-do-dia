@@ -210,25 +210,48 @@ data/workouts.json         Registros dos treinos (criado/atualizado pelo app)
 - Erros HTTP em mutações e falhas de conexão aparecem como toast no canto da tela.
 - Datas inválidas em mutações retornam `400`; registros inexistentes retornam `404`.
 
-## Identidade visual
+## Identidade visual e temas
 
-A interface usa uma paleta terrosa definida no `tailwind.config` inline de `views/index.ejs`
-(classes disponíveis em todas as partials, inclusive nas trocas via HTMX):
+A interface tem **quatro temas** selecionáveis no header (canto superior direito). A escolha
+fica salva em `localStorage` (`treino-theme`) e é aplicada antes do primeiro paint, sem flash
+de tema errado.
 
-| Token | Hex | Uso |
-| --- | --- | --- |
-| `cream` | `#FFFFEA` | fundo da página, superfícies claras |
-| `moss` | `#31401A` | botões primários, tile de volume, logo |
-| `gold` | `#BF9A54` | acentos, bordas de foco/hover, detalhes |
-| `sand` | `#CBBDA0` | bordas, divisores e chips neutros |
-| `sage` | `#A1A680` | chips de grupo muscular e estados "no treino" |
-| `olive` | `#656643` | textos secundários e rótulos |
-| `bark` | `#4D3A25` | textos de apoio e links |
-| `ink` | `#261D12` | texto principal |
+| Tema | Perfil |
+| --- | --- |
+| `terroso` (padrão) | creme + verde-oliva + dourado |
+| `meia-noite` | escuro quente, texto claro e verde profundo |
+| `oceano` | claro com primário verde-água e acento âmbar |
+| `ameixa` | claro com primário vinho e acento cobre |
+
+Todas as partials usam **tokens semânticos** (`bg-surface`, `text-ink`, `border-sand`,
+`bg-moss`, `text-on-primary`...), então a troca de tema vale também para o conteúdo trocado
+via HTMX. Cada token é um trio RGB em variável CSS definido em `views/index.ejs`; o
+`tailwind.config` inline consome esses canais via `rgb(var(--c-*) / <alpha-value>)`, o que
+preserva opacidades como `bg-moss/90`, `border-sand/80` e `ring-gold/30`. As sombras
+`shadow-card`/`shadow-soft` também vêm de variáveis (`--shadow-card`, `--shadow-soft`).
+
+| Token | Papel |
+| --- | --- |
+| `cream` | fundo da página |
+| `surface` | fundo de cards, campos e modais |
+| `ink` | texto principal |
+| `bark` | textos de apoio e links |
+| `olive` | textos secundários e rótulos |
+| `moss` | ação primária (botões, tile de volume, logo) |
+| `on-primary` | texto sobre `moss` |
+| `primary-hover` | hover da ação primária |
+| `inverted` / `on-inverted` | toast e botões escuros (invertem no tema escuro) |
+| `sand` | bordas e divisores |
+| `sage` | acentos neutros e estado "no treino" |
+| `gold` | acento/destaque |
+
+Para criar um tema novo: copie um bloco `[data-theme='...']` em `views/index.ejs`, ajuste os
+trios RGB e registre o nome em `THEMES` (`views/index.ejs` e `public/js/app.js`) e no
+`<select id="theme-select">`. Garanta contraste de `on-primary` sobre `moss` e de
+`on-inverted` sobre `inverted`.
 
 Tipografia: **Fraunces** (títulos, via `font-display`) e **Inter** (corpo, `font-sans`),
-carregadas do Google Fonts com fallback para fontes do sistema. Sombras `shadow-card` e
-`shadow-soft` também são definidas no mesmo config.
+carregadas do Google Fonts com fallback para fontes do sistema.
 
 ## Próximos passos
 

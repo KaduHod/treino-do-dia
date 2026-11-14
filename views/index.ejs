@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="h-full">
+<html lang="pt-BR" class="h-full" data-theme="terroso">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Treino do Dia — registro de treinos</title>
   <meta name="description" content="Registro minimalista de treinos diários com HTMX e Tailwind CSS." />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+  <script>
+    // Aplica o tema salvo antes do primeiro paint (evita flash de tema errado).
+    (function () {
+      var themes = ['terroso', 'meia-noite', 'oceano', 'ameixa'];
+      try {
+        var saved = localStorage.getItem('treino-theme');
+        if (saved && themes.indexOf(saved) !== -1) {
+          document.documentElement.dataset.theme = saved;
+        }
+      } catch (error) {
+        /* localStorage indisponível: mantém o tema padrão */
+      }
+    })();
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,26 +31,36 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
+    // Tokens semânticos: cada cor vem de uma variável CSS definida por tema em
+    // <style>. O formato "rgb(var(--c-x) / <alpha-value>)" preserva opacidades
+    // como bg-moss/90, border-sand/80 e ring-gold/30.
+    const token = (name) => `rgb(var(--c-${name}) / <alpha-value>)`;
+
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            cream: '#FFFFEA',
-            ink: '#261D12',
-            bark: '#4D3A25',
-            moss: '#31401A',
-            olive: '#656643',
-            sage: '#A1A680',
-            sand: '#CBBDA0',
-            gold: '#BF9A54'
+            cream: token('cream'),
+            surface: token('surface'),
+            ink: token('ink'),
+            bark: token('bark'),
+            moss: token('moss'),
+            olive: token('olive'),
+            sage: token('sage'),
+            sand: token('sand'),
+            gold: token('gold'),
+            'on-primary': token('on-primary'),
+            'primary-hover': token('primary-hover'),
+            inverted: token('inverted'),
+            'on-inverted': token('on-inverted')
           },
           fontFamily: {
             sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
             display: ['Fraunces', 'ui-serif', 'Georgia', 'Cambria', 'Times New Roman', 'serif']
           },
           boxShadow: {
-            card: '0 26px 50px -34px rgba(38, 29, 18, 0.55)',
-            soft: '0 10px 22px -18px rgba(38, 29, 18, 0.65)'
+            card: 'var(--shadow-card)',
+            soft: 'var(--shadow-soft)'
           }
         }
       }
@@ -43,26 +69,136 @@
   <script src="https://unpkg.com/htmx.org@2.0.11/dist/htmx.min.js"></script>
 
   <style>
-    :root { color-scheme: light; }
+    /* ---------------------------------------------------------------------
+       TEMAS
+       Cada token é um trio RGB (permite /opacidade no Tailwind).
+       Para criar um tema: copie um bloco, ajuste os canais RGB e registre o
+       nome em views/index.ejs e public/js/app.js (THEMES).
+       Papéis:
+         cream         fundo da página e superfícies claras
+         surface       fundo de cards/campos
+         ink           texto principal (e superfícies invertidas no tema claro)
+         bark          texto de apoio/links
+         olive         texto secundário/rótulos
+         moss          ação primária (botões, tile de volume)
+         on-primary    texto sobre moss/inverted
+         primary-hover hover da ação primária
+         sage          acento neutro (chips, estado "no treino")
+         sand          bordas e divisores
+         gold          acento/destaque
+         inverted      superfície escura (toast, botões discretos)
+         on-inverted   texto sobre inverted
+       --------------------------------------------------------------------- */
+    :root,
+    [data-theme='terroso'] {
+      color-scheme: light;
+      --c-cream: 255 255 234;
+      --c-surface: 255 255 255;
+      --c-ink: 38 29 18;
+      --c-bark: 77 58 37;
+      --c-moss: 49 64 26;
+      --c-olive: 101 102 67;
+      --c-sage: 161 166 128;
+      --c-sand: 203 189 160;
+      --c-gold: 191 154 84;
+      --c-on-primary: 255 255 234;
+      --c-primary-hover: 77 58 37;
+      --c-inverted: 38 29 18;
+      --c-on-inverted: 255 255 234;
+      --shadow-card: 0 26px 50px -34px rgb(38 29 18 / 0.55);
+      --shadow-soft: 0 10px 22px -18px rgb(38 29 18 / 0.65);
+      --glow-gold: rgb(191 154 84 / 0.18);
+      --glow-sage: rgb(161 166 128 / 0.24);
+      --backdrop: rgb(38 29 18 / 0.58);
+    }
 
-    html { background-color: #FFFFEA; }
+    [data-theme='meia-noite'] {
+      color-scheme: dark;
+      --c-cream: 20 21 15;
+      --c-surface: 30 32 23;
+      --c-ink: 241 237 220;
+      --c-bark: 214 200 171;
+      --c-moss: 63 90 42;
+      --c-olive: 167 167 141;
+      --c-sage: 110 117 81;
+      --c-sand: 59 62 46;
+      --c-gold: 217 179 107;
+      --c-on-primary: 247 244 230;
+      --c-primary-hover: 76 107 51;
+      --c-inverted: 237 233 216;
+      --c-on-inverted: 26 27 19;
+      --shadow-card: 0 26px 50px -34px rgb(0 0 0 / 0.7);
+      --shadow-soft: 0 10px 22px -18px rgb(0 0 0 / 0.75);
+      --glow-gold: rgb(217 179 107 / 0.1);
+      --glow-sage: rgb(110 117 81 / 0.18);
+      --backdrop: rgb(0 0 0 / 0.68);
+    }
+
+    [data-theme='oceano'] {
+      color-scheme: light;
+      --c-cream: 241 247 246;
+      --c-surface: 255 255 255;
+      --c-ink: 15 38 36;
+      --c-bark: 31 66 62;
+      --c-moss: 20 82 76;
+      --c-olive: 78 107 102;
+      --c-sage: 143 179 173;
+      --c-sand: 191 214 210;
+      --c-gold: 192 138 62;
+      --c-on-primary: 244 251 249;
+      --c-primary-hover: 12 59 54;
+      --c-inverted: 15 38 36;
+      --c-on-inverted: 241 247 246;
+      --shadow-card: 0 26px 50px -34px rgb(15 38 36 / 0.5);
+      --shadow-soft: 0 10px 22px -18px rgb(15 38 36 / 0.6);
+      --glow-gold: rgb(192 138 62 / 0.16);
+      --glow-sage: rgb(143 179 173 / 0.24);
+      --backdrop: rgb(15 38 36 / 0.55);
+    }
+
+    [data-theme='ameixa'] {
+      color-scheme: light;
+      --c-cream: 251 244 241;
+      --c-surface: 255 255 255;
+      --c-ink: 43 26 32;
+      --c-bark: 76 47 57;
+      --c-moss: 90 42 58;
+      --c-olive: 110 76 88;
+      --c-sage: 185 154 164;
+      --c-sand: 221 199 205;
+      --c-gold: 185 130 70;
+      --c-on-primary: 255 246 243;
+      --c-primary-hover: 69 33 46;
+      --c-inverted: 43 26 32;
+      --c-on-inverted: 251 244 241;
+      --shadow-card: 0 26px 50px -34px rgb(43 26 32 / 0.5);
+      --shadow-soft: 0 10px 22px -18px rgb(43 26 32 / 0.6);
+      --glow-gold: rgb(185 130 70 / 0.16);
+      --glow-sage: rgb(185 154 164 / 0.22);
+      --backdrop: rgb(43 26 32 / 0.55);
+    }
+
+    html { background-color: rgb(var(--c-cream)); }
 
     body {
       background-image:
-        radial-gradient(70rem 45rem at 112% -12%, rgba(191, 154, 84, 0.18), transparent 62%),
-        radial-gradient(55rem 34rem at -12% 2%, rgba(161, 166, 128, 0.24), transparent 58%);
+        radial-gradient(70rem 45rem at 112% -12%, var(--glow-gold), transparent 62%),
+        radial-gradient(55rem 34rem at -12% 2%, var(--glow-sage), transparent 58%);
       background-attachment: fixed;
     }
 
-    ::selection { background: rgba(191, 154, 84, 0.35); color: #261D12; }
+    ::selection { background: rgb(var(--c-gold) / 0.35); color: rgb(var(--c-ink)); }
 
-    .thin-scrollbar { scrollbar-width: thin; scrollbar-color: #CBBDA0 transparent; }
+    .thin-scrollbar { scrollbar-width: thin; scrollbar-color: rgb(var(--c-sand)) transparent; }
     .thin-scrollbar::-webkit-scrollbar { width: 8px; }
-    .thin-scrollbar::-webkit-scrollbar-thumb { background: #CBBDA0; border-radius: 9999px; }
-    .thin-scrollbar::-webkit-scrollbar-thumb:hover { background: #A1A680; }
+    .thin-scrollbar::-webkit-scrollbar-thumb { background: rgb(var(--c-sand)); border-radius: 9999px; }
+    .thin-scrollbar::-webkit-scrollbar-thumb:hover { background: rgb(var(--c-sage)); }
 
-    dialog { color: #261D12; }
-    dialog::backdrop { background: rgba(38, 29, 18, 0.58); backdrop-filter: blur(3px); }
+    /* Sombra sutil usada nas linhas de treino. */
+    .entry-row { box-shadow: 0 1px 0 rgb(var(--c-ink) / 0.04); }
+
+    dialog { color: rgb(var(--c-ink)); }
+    dialog::backdrop { background: var(--backdrop); backdrop-filter: blur(3px); }
     dialog[open] { animation: dialog-in 170ms ease-out; }
     @keyframes dialog-in {
       from { opacity: 0; transform: translateY(10px) scale(0.985); }
@@ -97,40 +233,56 @@
         </div>
       </div>
 
-      <div class="flex items-center gap-2" aria-label="Selecionar data">
-        <button
-          type="button"
-          data-date-shift="-1"
-          class="flex h-9 w-9 items-center justify-center rounded-xl border border-sand bg-white/80 text-lg leading-none text-bark shadow-soft transition hover:border-gold hover:text-moss focus:outline-none focus:ring-2 focus:ring-gold/40"
-          aria-label="Dia anterior"
-        >‹</button>
+      <div class="flex flex-wrap items-center gap-2 sm:justify-end" role="group" aria-label="Controles do dia">
+        <div class="flex items-center gap-2" aria-label="Selecionar data">
+          <button
+            type="button"
+            data-date-shift="-1"
+            class="flex h-9 w-9 items-center justify-center rounded-xl border border-sand bg-surface/80 text-lg leading-none text-bark shadow-soft transition hover:border-gold hover:text-moss focus:outline-none focus:ring-2 focus:ring-gold/40"
+            aria-label="Dia anterior"
+          >‹</button>
 
-        <input
-          id="day-date"
-          name="date"
-          type="date"
-          value="<%= view.date %>"
-          hx-get="/day"
-          hx-target="#content"
-          hx-swap="innerHTML"
-          hx-trigger="change"
-          hx-include="#filter-form"
-          class="rounded-xl border border-sand bg-white/80 px-3 py-2 text-sm font-semibold text-bark shadow-soft focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30"
-          aria-label="Data do treino"
-        />
+          <input
+            id="day-date"
+            name="date"
+            type="date"
+            value="<%= view.date %>"
+            hx-get="/day"
+            hx-target="#content"
+            hx-swap="innerHTML"
+            hx-trigger="change"
+            hx-include="#filter-form"
+            class="rounded-xl border border-sand bg-surface/80 px-3 py-2 text-sm font-semibold text-bark shadow-soft focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30"
+            aria-label="Data do treino"
+          />
 
-        <button
-          type="button"
-          data-date-shift="1"
-          class="flex h-9 w-9 items-center justify-center rounded-xl border border-sand bg-white/80 text-lg leading-none text-bark shadow-soft transition hover:border-gold hover:text-moss focus:outline-none focus:ring-2 focus:ring-gold/40"
-          aria-label="Próximo dia"
-        >›</button>
+          <button
+            type="button"
+            data-date-shift="1"
+            class="flex h-9 w-9 items-center justify-center rounded-xl border border-sand bg-surface/80 text-lg leading-none text-bark shadow-soft transition hover:border-gold hover:text-moss focus:outline-none focus:ring-2 focus:ring-gold/40"
+            aria-label="Próximo dia"
+          >›</button>
 
-        <button
-          type="button"
-          data-date-today
-          class="rounded-xl bg-moss px-3.5 py-2 text-sm font-semibold text-cream shadow-soft ring-1 ring-gold/25 transition hover:bg-bark focus:outline-none focus:ring-2 focus:ring-gold/50"
-        >Hoje</button>
+          <button
+            type="button"
+            data-date-today
+            class="rounded-xl bg-moss px-3.5 py-2 text-sm font-semibold text-on-primary shadow-soft ring-1 ring-gold/25 transition hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-gold/50"
+          >Hoje</button>
+        </div>
+
+        <label class="ml-auto inline-flex items-center sm:ml-0" for="theme-select">
+          <span class="sr-only">Tema</span>
+          <select
+            id="theme-select"
+            class="h-9 cursor-pointer rounded-xl border border-sand bg-surface/80 pl-3 pr-7 text-sm font-medium text-bark shadow-soft transition hover:border-gold focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30"
+            title="Tema da interface"
+          >
+            <option value="terroso">Terroso</option>
+            <option value="meia-noite">Meia-noite</option>
+            <option value="oceano">Oceano</option>
+            <option value="ameixa">Ameixa</option>
+          </select>
+        </label>
       </div>
     </header>
 
@@ -162,7 +314,7 @@
   <div
     id="toast"
     role="status"
-    class="pointer-events-none fixed bottom-4 right-4 z-50 hidden max-w-sm rounded-xl bg-ink px-4 py-3 text-sm text-cream shadow-lg ring-1 ring-gold/40"
+    class="pointer-events-none fixed bottom-4 right-4 z-50 hidden max-w-sm rounded-xl bg-inverted px-4 py-3 text-sm text-on-inverted shadow-lg ring-1 ring-gold/40"
   ></div>
 
   <script src="/js/app.js"></script>

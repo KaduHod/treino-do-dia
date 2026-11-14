@@ -1,16 +1,16 @@
 <section
   id="day-panel"
   data-date="<%= view.date %>"
-  class="flex h-full flex-col overflow-hidden rounded-3xl bg-white/90 shadow-card ring-1 ring-sand/80 backdrop-blur"
+  class="flex h-full flex-col overflow-hidden rounded-3xl bg-surface/90 shadow-card ring-1 ring-sand/80 backdrop-blur"
 >
-  <header class="flex flex-wrap items-start justify-between gap-3 border-b border-sand/60 bg-gradient-to-br from-cream/90 via-white to-white px-5 py-4">
+  <header class="flex flex-wrap items-start justify-between gap-3 border-b border-sand/60 bg-gradient-to-br from-cream/90 via-surface to-surface px-5 py-4">
     <div>
       <p class="text-[10px] font-semibold uppercase tracking-[0.18em] text-olive">Treino do dia</p>
       <h2 class="mt-1 font-display text-xl font-semibold leading-snug text-ink"><%= view.dateLabel %></h2>
       <p class="mt-1 text-xs text-olive">Marque o que foi feito e ajuste repetições e carga. Cada alteração é salva na hora.</p>
     </div>
     <% if (view.isToday) { %>
-      <span class="rounded-full bg-moss px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-cream ring-1 ring-gold/40">Hoje</span>
+      <span class="rounded-full bg-moss px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-on-primary ring-1 ring-gold/40">Hoje</span>
     <% } %>
   </header>
 

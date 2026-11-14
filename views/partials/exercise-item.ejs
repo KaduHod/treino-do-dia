@@ -5,7 +5,7 @@
 >
   <button
     type="button"
-    class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-cream text-bark ring-1 ring-sand/70 transition hover:bg-moss hover:text-cream hover:ring-moss focus:outline-none focus:ring-2 focus:ring-gold/40"
+    class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-cream text-bark ring-1 ring-sand/70 transition hover:bg-moss hover:text-on-primary hover:ring-moss focus:outline-none focus:ring-2 focus:ring-gold/40"
     hx-get="/exercises/<%= exercise.id %>?date=<%= encodeURIComponent(view.date) %>"
     hx-target="#exercise-modal"
     hx-swap="innerHTML"
@@ -39,7 +39,7 @@
   <% } else { %>
     <button
       type="button"
-      class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-moss text-lg font-semibold leading-none text-cream shadow-soft ring-1 ring-gold/30 transition hover:bg-bark focus:outline-none focus:ring-2 focus:ring-gold/50"
+      class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-moss text-lg font-semibold leading-none text-on-primary shadow-soft ring-1 ring-gold/30 transition hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-gold/50"
       hx-post="/workouts/<%= view.date %>/entries"
       hx-vals='{"exerciseId": <%= exercise.id %>}'
       hx-target="#day-panel"

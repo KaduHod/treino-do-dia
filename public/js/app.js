@@ -2,12 +2,37 @@
 (function () {
   const DATE_INPUT_ID = 'day-date';
   const TOAST_ID = 'toast';
+  const THEME_KEY = 'treino-theme';
+  const THEMES = ['terroso', 'meia-noite', 'oceano', 'ameixa'];
   const SAVED_FEEDBACK_MS = 2500;
 
   let savedTimers = [];
 
   function dayInput() {
     return document.getElementById(DATE_INPUT_ID);
+  }
+
+  function themeSelect() {
+    return document.getElementById('theme-select');
+  }
+
+  function applyTheme(name, persist = true) {
+    const theme = THEMES.includes(name) ? name : THEMES[0];
+    document.documentElement.dataset.theme = theme;
+
+    const select = themeSelect();
+    if (select && select.value !== theme) select.value = theme;
+
+    if (!persist) return;
+    try {
+      localStorage.setItem(THEME_KEY, theme);
+    } catch (error) {
+      /* localStorage indisponível: tema vale só para esta página */
+    }
+  }
+
+  function syncThemeSelect() {
+    applyTheme(document.documentElement.dataset.theme, false);
   }
 
   function openDialog(dialog) {
@@ -97,6 +122,10 @@
     }
   });
 
+  document.addEventListener('change', (event) => {
+    if (event.target.id === 'theme-select') applyTheme(event.target.value);
+  });
+
   document.addEventListener('keydown', (event) => {
     if (event.key !== 'Escape') return;
     document.querySelectorAll('dialog[open]').forEach((dialog) => dialog.close());
@@ -134,4 +163,5 @@
   });
 
   syncDateInput();
+  syncThemeSelect();
 })();

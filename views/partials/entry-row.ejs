@@ -1,6 +1,6 @@
 <form
   id="entry-<%= entry.exerciseId %>"
-  class="entry-row flex flex-col gap-3 rounded-2xl border p-3 shadow-[0_1px_0_rgba(38,29,18,0.03)] transition sm:flex-row sm:flex-wrap sm:items-center <%= entry.done ? 'border-sage/70 bg-sage/10' : 'border-sand/80 bg-white' %>"
+  class="entry-row flex flex-col gap-3 rounded-2xl border p-3 transition sm:flex-row sm:flex-wrap sm:items-center <%= entry.done ? 'border-sage/70 bg-sage/10' : 'border-sand/80 bg-surface' %>"
   hx-patch="/workouts/<%= view.date %>/entries/<%= entry.exerciseId %>"
   hx-target="this"
   hx-swap="outerHTML"
@@ -36,7 +36,7 @@
         placeholder="3x12"
         autocomplete="off"
         maxlength="24"
-        class="w-16 rounded-lg border border-sand bg-cream/50 px-2 py-1 text-center text-sm font-semibold text-ink placeholder:text-olive/60 focus:border-gold focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold/30"
+        class="w-16 rounded-lg border border-sand bg-cream/50 px-2 py-1 text-center text-sm font-semibold text-ink placeholder:text-olive/60 focus:border-gold focus:bg-surface focus:outline-none focus:ring-2 focus:ring-gold/30"
       />
     </label>
 
@@ -50,7 +50,7 @@
         max="1000"
         step="0.5"
         inputmode="decimal"
-        class="w-20 rounded-lg border border-sand bg-cream/50 px-2 py-1 text-center text-sm font-semibold text-ink focus:border-gold focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold/30"
+        class="w-20 rounded-lg border border-sand bg-cream/50 px-2 py-1 text-center text-sm font-semibold text-ink focus:border-gold focus:bg-surface focus:outline-none focus:ring-2 focus:ring-gold/30"
       />
       <span class="text-[10px] font-normal normal-case text-olive">kg</span>
     </label>
