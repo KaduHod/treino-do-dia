@@ -1,0 +1,50 @@
+name: treino-do-dia
+
+services:
+  # App: http://localhost:${APP_PORT:-3000}
+  app:
+    build: .
+    image: treino-do-dia:latest
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-3000}:3000"
+    environment:
+      PORT: 3000
+      # Padrão: o mock abaixo (rede interna do compose). Para a API real:
+      #   APP_EXERCISES_API_URL=https://gymapi.kadu.tec.br/api/v1 docker compose up -d app
+      EXERCISES_API_URL: ${APP_EXERCISES_API_URL:-http://mock:3055/api/v1}
+      EXERCISES_API_SEARCH_PARAM: ${EXERCISES_API_SEARCH_PARAM:-Search}
+      EXERCISES_API_AUTH_HEADER: ${EXERCISES_API_AUTH_HEADER:-}
+      EXERCISES_API_AUTH_VALUE: ${EXERCISES_API_AUTH_VALUE:-}
+      EXERCISES_API_TIMEOUT_MS: ${EXERCISES_API_TIMEOUT_MS:-5000}
+      EXERCISES_API_CACHE_TTL_MS: ${EXERCISES_API_CACHE_TTL_MS:-60000}
+      EXERCISES_API_CONCURRENCY: ${EXERCISES_API_CONCURRENCY:-6}
+    volumes:
+      # Treinos ficam fora do container (sobrevivem a rebuild/restart).
+      - workouts-data:/app/data
+
+  # Mock da API de exercícios — só para desenvolvimento/demonstração.
+  # Usa a mesma imagem, trocando o comando. Não é exposto no host.
+  mock:
+    build: .
+    image: treino-do-dia:latest
+    restart: unless-stopped
+    command: ["node", "mock-api/server.js"]
+    environment:
+      MOCK_API_PORT: 3055
+      MOCK_API_LATENCY_MS: ${MOCK_API_LATENCY_MS:-0}
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:3055/api/v1/muscles/groups').then((r) => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+volumes:
+  workouts-data:

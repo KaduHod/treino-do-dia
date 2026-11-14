@@ -1,0 +1,51 @@
+<article
+  id="ex-<%= exercise.id %>"
+  class="group flex items-start gap-3 rounded-xl px-3 py-2.5 transition hover:bg-cream/80"
+  <%- typeof oob !== 'undefined' && oob ? 'hx-swap-oob="outerHTML"' : '' %>
+>
+  <button
+    type="button"
+    class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-cream text-bark ring-1 ring-sand/70 transition hover:bg-moss hover:text-cream hover:ring-moss focus:outline-none focus:ring-2 focus:ring-gold/40"
+    hx-get="/exercises/<%= exercise.id %>?date=<%= encodeURIComponent(view.date) %>"
+    hx-target="#exercise-modal"
+    hx-swap="innerHTML"
+    title="Ver detalhes de <%= exercise.name %>"
+    aria-label="Ver detalhes de <%= exercise.name %>"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4" aria-hidden="true">
+      <path fill-rule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0ZM9 6.75a1 1 0 1 1 2 0 1 1 0 0 1-2 0ZM9 9.5a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 .75.75v4a.75.75 0 0 1-1.5 0v-4Z" clip-rule="evenodd" />
+    </svg>
+  </button>
+
+  <div class="min-w-0 flex-1">
+    <p class="truncate text-sm font-semibold text-ink" title="<%= exercise.name %>"><%= exercise.name %></p>
+    <div class="mt-1 flex flex-wrap items-center gap-1">
+      <% exercise.groups.forEach(function (group) { %>
+        <span class="rounded-full bg-sage/25 px-2 py-0.5 text-[10px] font-semibold text-moss ring-1 ring-sage/40"><%= group %></span>
+      <% }) %>
+      <% if (!exercise.groups.length) { %>
+        <span class="text-[10px] text-olive">Sem grupo muscular</span>
+      <% } %>
+      <% if (exercise.mappings.length > 1) { %>
+        <span class="text-[10px] text-olive">· <%= exercise.mappings.length %> músculos mapeados</span>
+      <% } %>
+    </div>
+  </div>
+
+  <% if (view.registeredIds.has(exercise.id)) { %>
+    <span class="mt-0.5 inline-flex shrink-0 items-center gap-1 rounded-full bg-sage/20 px-2.5 py-1 text-[11px] font-semibold text-moss ring-1 ring-sage/50" title="Já registrado neste dia">
+      ✓ No treino
+    </span>
+  <% } else { %>
+    <button
+      type="button"
+      class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-moss text-lg font-semibold leading-none text-cream shadow-soft ring-1 ring-gold/30 transition hover:bg-bark focus:outline-none focus:ring-2 focus:ring-gold/50"
+      hx-post="/workouts/<%= view.date %>/entries"
+      hx-vals='{"exerciseId": <%= exercise.id %>}'
+      hx-target="#day-panel"
+      hx-swap="outerHTML"
+      title="Adicionar <%= exercise.name %> ao treino"
+      aria-label="Adicionar <%= exercise.name %> ao treino"
+    >+</button>
+  <% } %>
+</article>

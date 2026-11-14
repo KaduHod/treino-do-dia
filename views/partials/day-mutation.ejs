@@ -1,0 +1,4 @@
+<%- include('day-panel', { view }) %>
+<% if (typeof oobExercise !== 'undefined' && oobExercise) { %>
+  <%- include('exercise-item', { view, exercise: oobExercise, oob: true }) %>
+<% } %>

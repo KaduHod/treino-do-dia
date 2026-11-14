@@ -1,0 +1,409 @@
+{
+"select e.description ,a.* from auxiliar a \nleft join exercise_search es on es.exercise_id = a.id_exercicio \njoin exercise e on e.id = a.id_exercicio \nwhere es.id is null": [
+	{
+		"description" : "O desenvolvimento de ombros é um exercício que trabalha principalmente a porção anterior dos deltoides, além de envolver tríceps e músculos estabilizadores. Consiste em empurrar um peso acima da cabeça, partindo da altura dos ombros. Pode ser realizado em pé ou sentado, utilizando barra, halteres ou kettlebells. Variações incluem o desenvolvimento unilateral e o push press, que utiliza o impulso das pernas.",
+		"id_exercicio" : 87,
+		"nome_exercicio" : "Desenvolvimento Arnold",
+		"grupo_muscular" : "Peitoral",
+		"porcao_muscular" : "Porção Superior (Maior)",
+		"articulacao" : "Ombro (Glenoumeral)",
+		"movimento" : "Flexão"
+	},
+	{
+		"description" : "O desenvolvimento de ombros é um exercício que trabalha principalmente a porção anterior dos deltoides, além de envolver tríceps e músculos estabilizadores. Consiste em empurrar um peso acima da cabeça, partindo da altura dos ombros. Pode ser realizado em pé ou sentado, utilizando barra, halteres ou kettlebells. Variações incluem o desenvolvimento unilateral e o push press, que utiliza o impulso das pernas.",
+		"id_exercicio" : 87,
+		"nome_exercicio" : "Desenvolvimento Arnold",
+		"grupo_muscular" : "Costas",
+		"porcao_muscular" : "Trapézio Médio",
+		"articulacao" : "Escápula e Clavícula",
+		"movimento" : "Adução (Retração)"
+	},
+	{
+		"description" : "O desenvolvimento de ombros é um exercício que trabalha principalmente a porção anterior dos deltoides, além de envolver tríceps e músculos estabilizadores. Consiste em empurrar um peso acima da cabeça, partindo da altura dos ombros. Pode ser realizado em pé ou sentado, utilizando barra, halteres ou kettlebells. Variações incluem o desenvolvimento unilateral e o push press, que utiliza o impulso das pernas.",
+		"id_exercicio" : 87,
+		"nome_exercicio" : "Desenvolvimento Arnold",
+		"grupo_muscular" : "Costas",
+		"porcao_muscular" : "Trapézio Inferior",
+		"articulacao" : "Escápula e Clavícula",
+		"movimento" : "Adução (Retração)"
+	},
+	{
+		"description" : "O desenvolvimento de ombros é um exercício que trabalha principalmente a porção anterior dos deltoides, além de envolver tríceps e músculos estabilizadores. Consiste em empurrar um peso acima da cabeça, partindo da altura dos ombros. Pode ser realizado em pé ou sentado, utilizando barra, halteres ou kettlebells. Variações incluem o desenvolvimento unilateral e o push press, que utiliza o impulso das pernas.",
+		"id_exercicio" : 87,
+		"nome_exercicio" : "Desenvolvimento Arnold",
+		"grupo_muscular" : "Bíceps",
+		"porcao_muscular" : "Cabeça Longa",
+		"articulacao" : "Cotovelo",
+		"movimento" : "Flexão"
+	},
+	{
+		"description" : "O desenvolvimento de ombros é um exercício que trabalha principalmente a porção anterior dos deltoides, além de envolver tríceps e músculos estabilizadores. Consiste em empurrar um peso acima da cabeça, partindo da altura dos ombros. Pode ser realizado em pé ou sentado, utilizando barra, halteres ou kettlebells. Variações incluem o desenvolvimento unilateral e o push press, que utiliza o impulso das pernas.",
+		"id_exercicio" : 87,
+		"nome_exercicio" : "Desenvolvimento Arnold",
+		"grupo_muscular" : "Core",
+		"porcao_muscular" : "Reto do Abdome",
+		"articulacao" : "Coluna Torácica e Lombar",
+		"movimento" : "Flexão"
+	},
+	{
+		"description" : "O desenvolvimento de ombros é um exercício que trabalha principalmente a porção anterior dos deltoides, além de envolver tríceps e músculos estabilizadores. Consiste em empurrar um peso acima da cabeça, partindo da altura dos ombros. Pode ser realizado em pé ou sentado, utilizando barra, halteres ou kettlebells. Variações incluem o desenvolvimento unilateral e o push press, que utiliza o impulso das pernas.",
+		"id_exercicio" : 87,
+		"nome_exercicio" : "Desenvolvimento Arnold",
+		"grupo_muscular" : "Core",
+		"porcao_muscular" : "Eretores da Espinha",
+		"articulacao" : "Coluna Torácica e Lombar",
+		"movimento" : "Extensão"
+	},
+	{
+		"description" : "O desenvolvimento de ombros é um exercício que trabalha principalmente a porção anterior dos deltoides, além de envolver tríceps e músculos estabilizadores. Consiste em empurrar um peso acima da cabeça, partindo da altura dos ombros. Pode ser realizado em pé ou sentado, utilizando barra, halteres ou kettlebells. Variações incluem o desenvolvimento unilateral e o push press, que utiliza o impulso das pernas.",
+		"id_exercicio" : 87,
+		"nome_exercicio" : "Desenvolvimento Arnold",
+		"grupo_muscular" : "Peitoral",
+		"porcao_muscular" : "Porção Superior (Maior)",
+		"articulacao" : "Ombro (Glenoumeral)",
+		"movimento" : "Extensão"
+	},
+	{
+		"description" : "O desenvolvimento de ombros é um exercício que trabalha principalmente a porção anterior dos deltoides, além de envolver tríceps e músculos estabilizadores. Consiste em empurrar um peso acima da cabeça, partindo da altura dos ombros. Pode ser realizado em pé ou sentado, utilizando barra, halteres ou kettlebells. Variações incluem o desenvolvimento unilateral e o push press, que utiliza o impulso das pernas.",
+		"id_exercicio" : 87,
+		"nome_exercicio" : "Desenvolvimento Arnold",
+		"grupo_muscular" : "Costas",
+		"porcao_muscular" : "Trapézio Superior",
+		"articulacao" : "Escápula e Clavícula",
+		"movimento" : "Elevação"
+	},
+	{
+		"description" : "O desenvolvimento de ombros é um exercício que trabalha principalmente a porção anterior dos deltoides, além de envolver tríceps e músculos estabilizadores. Consiste em empurrar um peso acima da cabeça, partindo da altura dos ombros. Pode ser realizado em pé ou sentado, utilizando barra, halteres ou kettlebells. Variações incluem o desenvolvimento unilateral e o push press, que utiliza o impulso das pernas.",
+		"id_exercicio" : 87,
+		"nome_exercicio" : "Desenvolvimento Arnold",
+		"grupo_muscular" : "Bíceps",
+		"porcao_muscular" : "Cabeça Longa",
+		"articulacao" : "Cotovelo",
+		"movimento" : "Extensão"
+	},
+	{
+		"description" : "O desenvolvimento de ombros é um exercício que trabalha principalmente a porção anterior dos deltoides, além de envolver tríceps e músculos estabilizadores. Consiste em empurrar um peso acima da cabeça, partindo da altura dos ombros. Pode ser realizado em pé ou sentado, utilizando barra, halteres ou kettlebells. Variações incluem o desenvolvimento unilateral e o push press, que utiliza o impulso das pernas.",
+		"id_exercicio" : 87,
+		"nome_exercicio" : "Desenvolvimento Arnold",
+		"grupo_muscular" : "Costas",
+		"porcao_muscular" : "Infraespinhal",
+		"articulacao" : "Ombro (Glenoumeral)",
+		"movimento" : "Rotação Lateral (Rotação Externa)"
+	},
+	{
+		"description" : "O desenvolvimento de ombros é um exercício que trabalha principalmente a porção anterior dos deltoides, além de envolver tríceps e músculos estabilizadores. Consiste em empurrar um peso acima da cabeça, partindo da altura dos ombros. Pode ser realizado em pé ou sentado, utilizando barra, halteres ou kettlebells. Variações incluem o desenvolvimento unilateral e o push press, que utiliza o impulso das pernas.",
+		"id_exercicio" : 87,
+		"nome_exercicio" : "Desenvolvimento Arnold",
+		"grupo_muscular" : "Costas",
+		"porcao_muscular" : "Infraespinhal",
+		"articulacao" : "Ombro (Glenoumeral)",
+		"movimento" : "Rotação Medial (Rotação Interna)"
+	},
+	{
+		"description" : "A elevação de panturrilhas trabalha principalmente os músculos gastrocnêmio e sóleo, responsáveis pela extensão dos tornozelos. Pode ser realizada em pé, com os joelhos estendidos, enfatizando o gastrocnêmio, ou sentado, com os joelhos flexionados, dando maior ênfase ao sóleo. O exercício pode ser feito com o peso corporal ou com cargas adicionais, utilizando halteres, barras ou máquinas.",
+		"id_exercicio" : 86,
+		"nome_exercicio" : "Elevação de Panturrilhas",
+		"grupo_muscular" : "Panturrilha",
+		"porcao_muscular" : "Gastrocnêmio",
+		"articulacao" : "Tornozelo",
+		"movimento" : "Flexão Plantar"
+	},
+	{
+		"description" : "A elevação de panturrilhas trabalha principalmente os músculos gastrocnêmio e sóleo, responsáveis pela extensão dos tornozelos. Pode ser realizada em pé, com os joelhos estendidos, enfatizando o gastrocnêmio, ou sentado, com os joelhos flexionados, dando maior ênfase ao sóleo. O exercício pode ser feito com o peso corporal ou com cargas adicionais, utilizando halteres, barras ou máquinas.",
+		"id_exercicio" : 86,
+		"nome_exercicio" : "Elevação de Panturrilhas",
+		"grupo_muscular" : "Panturrilha",
+		"porcao_muscular" : "Sóleo",
+		"articulacao" : "Tornozelo",
+		"movimento" : "Flexão Plantar"
+	},
+	{
+		"description" : "A elevação de panturrilhas trabalha principalmente os músculos gastrocnêmio e sóleo, responsáveis pela extensão dos tornozelos. Pode ser realizada em pé, com os joelhos estendidos, enfatizando o gastrocnêmio, ou sentado, com os joelhos flexionados, dando maior ênfase ao sóleo. O exercício pode ser feito com o peso corporal ou com cargas adicionais, utilizando halteres, barras ou máquinas.",
+		"id_exercicio" : 86,
+		"nome_exercicio" : "Elevação de Panturrilhas",
+		"grupo_muscular" : "Panturrilha",
+		"porcao_muscular" : "Gastrocnêmio",
+		"articulacao" : "Tornozelo",
+		"movimento" : "Dorsiflexão"
+	},
+	{
+		"description" : "A elevação de panturrilhas trabalha principalmente os músculos gastrocnêmio e sóleo, responsáveis pela extensão dos tornozelos. Pode ser realizada em pé, com os joelhos estendidos, enfatizando o gastrocnêmio, ou sentado, com os joelhos flexionados, dando maior ênfase ao sóleo. O exercício pode ser feito com o peso corporal ou com cargas adicionais, utilizando halteres, barras ou máquinas.",
+		"id_exercicio" : 86,
+		"nome_exercicio" : "Elevação de Panturrilhas",
+		"grupo_muscular" : "Panturrilha",
+		"porcao_muscular" : "Sóleo",
+		"articulacao" : "Tornozelo",
+		"movimento" : "Dorsiflexão"
+	},
+	{
+		"description" : "O leg press é um exercício multiarticular que trabalha principalmente quadríceps, posteriores de coxa, glúteos e panturrilhas. Consiste em empurrar uma plataforma com os pés, utilizando uma máquina específica. A posição dos pés pode variar para enfatizar diferentes grupos musculares. Também pode ser realizado unilateralmente, ajudando a corrigir desequilíbrios de força entre as pernas.",
+		"id_exercicio" : 85,
+		"nome_exercicio" : "Leg Press",
+		"grupo_muscular" : "Core",
+		"porcao_muscular" : "Multífido",
+		"articulacao" : "Coluna Torácica e Lombar",
+		"movimento" : "Extensão"
+	},
+	{
+		"description" : "O leg press é um exercício multiarticular que trabalha principalmente quadríceps, posteriores de coxa, glúteos e panturrilhas. Consiste em empurrar uma plataforma com os pés, utilizando uma máquina específica. A posição dos pés pode variar para enfatizar diferentes grupos musculares. Também pode ser realizado unilateralmente, ajudando a corrigir desequilíbrios de força entre as pernas.",
+		"id_exercicio" : 85,
+		"nome_exercicio" : "Leg Press",
+		"grupo_muscular" : "Core",
+		"porcao_muscular" : "Transverso do Abdome",
+		"articulacao" : "Coluna Torácica e Lombar",
+		"movimento" : "Flexão"
+	},
+	{
+		"description" : "O leg press é um exercício multiarticular que trabalha principalmente quadríceps, posteriores de coxa, glúteos e panturrilhas. Consiste em empurrar uma plataforma com os pés, utilizando uma máquina específica. A posição dos pés pode variar para enfatizar diferentes grupos musculares. Também pode ser realizado unilateralmente, ajudando a corrigir desequilíbrios de força entre as pernas.",
+		"id_exercicio" : 85,
+		"nome_exercicio" : "Leg Press",
+		"grupo_muscular" : "Core",
+		"porcao_muscular" : "Reto do Abdome",
+		"articulacao" : "Coluna Torácica e Lombar",
+		"movimento" : "Flexão"
+	},
+	{
+		"description" : "O leg press é um exercício multiarticular que trabalha principalmente quadríceps, posteriores de coxa, glúteos e panturrilhas. Consiste em empurrar uma plataforma com os pés, utilizando uma máquina específica. A posição dos pés pode variar para enfatizar diferentes grupos musculares. Também pode ser realizado unilateralmente, ajudando a corrigir desequilíbrios de força entre as pernas.",
+		"id_exercicio" : 85,
+		"nome_exercicio" : "Leg Press",
+		"grupo_muscular" : "Quadríceps",
+		"porcao_muscular" : "Reto Femoral",
+		"articulacao" : "Joelho",
+		"movimento" : "Extensão"
+	},
+	{
+		"description" : "O leg press é um exercício multiarticular que trabalha principalmente quadríceps, posteriores de coxa, glúteos e panturrilhas. Consiste em empurrar uma plataforma com os pés, utilizando uma máquina específica. A posição dos pés pode variar para enfatizar diferentes grupos musculares. Também pode ser realizado unilateralmente, ajudando a corrigir desequilíbrios de força entre as pernas.",
+		"id_exercicio" : 85,
+		"nome_exercicio" : "Leg Press",
+		"grupo_muscular" : "Panturrilha",
+		"porcao_muscular" : "Gastrocnêmio",
+		"articulacao" : "Tornozelo",
+		"movimento" : "Flexão Plantar"
+	},
+	{
+		"description" : "O leg press é um exercício multiarticular que trabalha principalmente quadríceps, posteriores de coxa, glúteos e panturrilhas. Consiste em empurrar uma plataforma com os pés, utilizando uma máquina específica. A posição dos pés pode variar para enfatizar diferentes grupos musculares. Também pode ser realizado unilateralmente, ajudando a corrigir desequilíbrios de força entre as pernas.",
+		"id_exercicio" : 85,
+		"nome_exercicio" : "Leg Press",
+		"grupo_muscular" : "Quadril",
+		"porcao_muscular" : "Iliopsoas",
+		"articulacao" : "Quadril",
+		"movimento" : "Flexão"
+	},
+	{
+		"description" : "O leg press é um exercício multiarticular que trabalha principalmente quadríceps, posteriores de coxa, glúteos e panturrilhas. Consiste em empurrar uma plataforma com os pés, utilizando uma máquina específica. A posição dos pés pode variar para enfatizar diferentes grupos musculares. Também pode ser realizado unilateralmente, ajudando a corrigir desequilíbrios de força entre as pernas.",
+		"id_exercicio" : 85,
+		"nome_exercicio" : "Leg Press",
+		"grupo_muscular" : "Core",
+		"porcao_muscular" : "Eretores da Espinha",
+		"articulacao" : "Coluna Torácica e Lombar",
+		"movimento" : "Flexão"
+	},
+	{
+		"description" : "O leg press é um exercício multiarticular que trabalha principalmente quadríceps, posteriores de coxa, glúteos e panturrilhas. Consiste em empurrar uma plataforma com os pés, utilizando uma máquina específica. A posição dos pés pode variar para enfatizar diferentes grupos musculares. Também pode ser realizado unilateralmente, ajudando a corrigir desequilíbrios de força entre as pernas.",
+		"id_exercicio" : 85,
+		"nome_exercicio" : "Leg Press",
+		"grupo_muscular" : "Panturrilha",
+		"porcao_muscular" : "Gastrocnêmio",
+		"articulacao" : "Tornozelo",
+		"movimento" : "Dorsiflexão"
+	},
+	{
+		"description" : "O leg press é um exercício multiarticular que trabalha principalmente quadríceps, posteriores de coxa, glúteos e panturrilhas. Consiste em empurrar uma plataforma com os pés, utilizando uma máquina específica. A posição dos pés pode variar para enfatizar diferentes grupos musculares. Também pode ser realizado unilateralmente, ajudando a corrigir desequilíbrios de força entre as pernas.",
+		"id_exercicio" : 85,
+		"nome_exercicio" : "Leg Press",
+		"grupo_muscular" : "Quadríceps",
+		"porcao_muscular" : "Reto Femoral",
+		"articulacao" : "Joelho",
+		"movimento" : "Flexão"
+	},
+	{
+		"description" : "O leg press é um exercício multiarticular que trabalha principalmente quadríceps, posteriores de coxa, glúteos e panturrilhas. Consiste em empurrar uma plataforma com os pés, utilizando uma máquina específica. A posição dos pés pode variar para enfatizar diferentes grupos musculares. Também pode ser realizado unilateralmente, ajudando a corrigir desequilíbrios de força entre as pernas.",
+		"id_exercicio" : 85,
+		"nome_exercicio" : "Leg Press",
+		"grupo_muscular" : "Quadril",
+		"porcao_muscular" : "Iliopsoas",
+		"articulacao" : "Quadril",
+		"movimento" : "Extensão"
+	},
+	{
+		"description" : "A rosca bíceps é um exercício que trabalha principalmente os músculos bíceps braquial, braquial e braquiorradial. Consiste em flexionar os cotovelos levantando um peso, mantendo os cotovelos próximos ao corpo e o tronco estável. A pegada com as palmas das mãos voltadas para cima aumenta a ativação do bíceps. Pode ser realizada com halteres ou barra, além de variações como rosca Scott e rosca inclinada.",
+		"id_exercicio" : 84,
+		"nome_exercicio" : "Rosca Martelo",
+		"grupo_muscular" : "Bíceps",
+		"porcao_muscular" : "Cabeça Longa",
+		"articulacao" : "Cotovelo",
+		"movimento" : "Flexão"
+	},
+	{
+		"description" : "A rosca bíceps é um exercício que trabalha principalmente os músculos bíceps braquial, braquial e braquiorradial. Consiste em flexionar os cotovelos levantando um peso, mantendo os cotovelos próximos ao corpo e o tronco estável. A pegada com as palmas das mãos voltadas para cima aumenta a ativação do bíceps. Pode ser realizada com halteres ou barra, além de variações como rosca Scott e rosca inclinada.",
+		"id_exercicio" : 84,
+		"nome_exercicio" : "Rosca Martelo",
+		"grupo_muscular" : "Bíceps",
+		"porcao_muscular" : "Cabeça Longa",
+		"articulacao" : "Antebraço (Rádio-ulnar)",
+		"movimento" : "Supinação"
+	},
+	{
+		"description" : "A rosca bíceps é um exercício que trabalha principalmente os músculos bíceps braquial, braquial e braquiorradial. Consiste em flexionar os cotovelos levantando um peso, mantendo os cotovelos próximos ao corpo e o tronco estável. A pegada com as palmas das mãos voltadas para cima aumenta a ativação do bíceps. Pode ser realizada com halteres ou barra, além de variações como rosca Scott e rosca inclinada.",
+		"id_exercicio" : 84,
+		"nome_exercicio" : "Rosca Martelo",
+		"grupo_muscular" : "Bíceps",
+		"porcao_muscular" : "Cabeça Curta",
+		"articulacao" : "Cotovelo",
+		"movimento" : "Flexão"
+	},
+	{
+		"description" : "A rosca bíceps é um exercício que trabalha principalmente os músculos bíceps braquial, braquial e braquiorradial. Consiste em flexionar os cotovelos levantando um peso, mantendo os cotovelos próximos ao corpo e o tronco estável. A pegada com as palmas das mãos voltadas para cima aumenta a ativação do bíceps. Pode ser realizada com halteres ou barra, além de variações como rosca Scott e rosca inclinada.",
+		"id_exercicio" : 84,
+		"nome_exercicio" : "Rosca Martelo",
+		"grupo_muscular" : "Bíceps",
+		"porcao_muscular" : "Cabeça Curta",
+		"articulacao" : "Antebraço (Rádio-ulnar)",
+		"movimento" : "Supinação"
+	},
+	{
+		"description" : "A rosca bíceps é um exercício que trabalha principalmente os músculos bíceps braquial, braquial e braquiorradial. Consiste em flexionar os cotovelos levantando um peso, mantendo os cotovelos próximos ao corpo e o tronco estável. A pegada com as palmas das mãos voltadas para cima aumenta a ativação do bíceps. Pode ser realizada com halteres ou barra, além de variações como rosca Scott e rosca inclinada.",
+		"id_exercicio" : 84,
+		"nome_exercicio" : "Rosca Martelo",
+		"grupo_muscular" : "Bíceps",
+		"porcao_muscular" : "Braquial",
+		"articulacao" : "Cotovelo",
+		"movimento" : "Flexão"
+	},
+	{
+		"description" : "A rosca bíceps é um exercício que trabalha principalmente os músculos bíceps braquial, braquial e braquiorradial. Consiste em flexionar os cotovelos levantando um peso, mantendo os cotovelos próximos ao corpo e o tronco estável. A pegada com as palmas das mãos voltadas para cima aumenta a ativação do bíceps. Pode ser realizada com halteres ou barra, além de variações como rosca Scott e rosca inclinada.",
+		"id_exercicio" : 84,
+		"nome_exercicio" : "Rosca Martelo",
+		"grupo_muscular" : "Antebraço",
+		"porcao_muscular" : "Braquiorradial",
+		"articulacao" : "Cotovelo",
+		"movimento" : "Flexão"
+	},
+	{
+		"description" : "A rosca bíceps é um exercício que trabalha principalmente os músculos bíceps braquial, braquial e braquiorradial. Consiste em flexionar os cotovelos levantando um peso, mantendo os cotovelos próximos ao corpo e o tronco estável. A pegada com as palmas das mãos voltadas para cima aumenta a ativação do bíceps. Pode ser realizada com halteres ou barra, além de variações como rosca Scott e rosca inclinada.",
+		"id_exercicio" : 84,
+		"nome_exercicio" : "Rosca Martelo",
+		"grupo_muscular" : "Antebraço",
+		"porcao_muscular" : "Supinador",
+		"articulacao" : "Antebraço (Rádio-ulnar)",
+		"movimento" : "Supinação"
+	},
+	{
+		"description" : "A rosca bíceps é um exercício que trabalha principalmente os músculos bíceps braquial, braquial e braquiorradial. Consiste em flexionar os cotovelos levantando um peso, mantendo os cotovelos próximos ao corpo e o tronco estável. A pegada com as palmas das mãos voltadas para cima aumenta a ativação do bíceps. Pode ser realizada com halteres ou barra, além de variações como rosca Scott e rosca inclinada.",
+		"id_exercicio" : 84,
+		"nome_exercicio" : "Rosca Martelo",
+		"grupo_muscular" : "Core",
+		"porcao_muscular" : "Reto do Abdome",
+		"articulacao" : "Coluna Torácica e Lombar",
+		"movimento" : "Flexão"
+	},
+	{
+		"description" : "A rosca bíceps é um exercício que trabalha principalmente os músculos bíceps braquial, braquial e braquiorradial. Consiste em flexionar os cotovelos levantando um peso, mantendo os cotovelos próximos ao corpo e o tronco estável. A pegada com as palmas das mãos voltadas para cima aumenta a ativação do bíceps. Pode ser realizada com halteres ou barra, além de variações como rosca Scott e rosca inclinada.",
+		"id_exercicio" : 84,
+		"nome_exercicio" : "Rosca Martelo",
+		"grupo_muscular" : "Costas",
+		"porcao_muscular" : "Trapézio Superior",
+		"articulacao" : "Ombro (Glenoumeral)",
+		"movimento" : "Flexão"
+	},
+	{
+		"description" : "A rosca bíceps é um exercício que trabalha principalmente os músculos bíceps braquial, braquial e braquiorradial. Consiste em flexionar os cotovelos levantando um peso, mantendo os cotovelos próximos ao corpo e o tronco estável. A pegada com as palmas das mãos voltadas para cima aumenta a ativação do bíceps. Pode ser realizada com halteres ou barra, além de variações como rosca Scott e rosca inclinada.",
+		"id_exercicio" : 84,
+		"nome_exercicio" : "Rosca Martelo",
+		"grupo_muscular" : "Costas",
+		"porcao_muscular" : "Trapézio Médio",
+		"articulacao" : "Ombro (Glenoumeral)",
+		"movimento" : "Flexão"
+	},
+	{
+		"description" : "A rosca bíceps é um exercício que trabalha principalmente os músculos bíceps braquial, braquial e braquiorradial. Consiste em flexionar os cotovelos levantando um peso, mantendo os cotovelos próximos ao corpo e o tronco estável. A pegada com as palmas das mãos voltadas para cima aumenta a ativação do bíceps. Pode ser realizada com halteres ou barra, além de variações como rosca Scott e rosca inclinada.",
+		"id_exercicio" : 84,
+		"nome_exercicio" : "Rosca Martelo",
+		"grupo_muscular" : "Costas",
+		"porcao_muscular" : "Trapézio Inferior",
+		"articulacao" : "Ombro (Glenoumeral)",
+		"movimento" : "Flexão"
+	},
+	{
+		"description" : "A rosca bíceps é um exercício que trabalha principalmente os músculos bíceps braquial, braquial e braquiorradial. Consiste em flexionar os cotovelos levantando um peso, mantendo os cotovelos próximos ao corpo e o tronco estável. A pegada com as palmas das mãos voltadas para cima aumenta a ativação do bíceps. Pode ser realizada com halteres ou barra, além de variações como rosca Scott e rosca inclinada.",
+		"id_exercicio" : 84,
+		"nome_exercicio" : "Rosca Martelo",
+		"grupo_muscular" : "Costas",
+		"porcao_muscular" : "Levantador da Escápula",
+		"articulacao" : "Ombro (Glenoumeral)",
+		"movimento" : "Flexão"
+	},
+	{
+		"description" : "A rosca bíceps é um exercício que trabalha principalmente os músculos bíceps braquial, braquial e braquiorradial. Consiste em flexionar os cotovelos levantando um peso, mantendo os cotovelos próximos ao corpo e o tronco estável. A pegada com as palmas das mãos voltadas para cima aumenta a ativação do bíceps. Pode ser realizada com halteres ou barra, além de variações como rosca Scott e rosca inclinada.",
+		"id_exercicio" : 84,
+		"nome_exercicio" : "Rosca Martelo",
+		"grupo_muscular" : "Bíceps",
+		"porcao_muscular" : "Cabeça Longa",
+		"articulacao" : "Cotovelo",
+		"movimento" : "Extensão"
+	},
+	{
+		"description" : "A rosca bíceps é um exercício que trabalha principalmente os músculos bíceps braquial, braquial e braquiorradial. Consiste em flexionar os cotovelos levantando um peso, mantendo os cotovelos próximos ao corpo e o tronco estável. A pegada com as palmas das mãos voltadas para cima aumenta a ativação do bíceps. Pode ser realizada com halteres ou barra, além de variações como rosca Scott e rosca inclinada.",
+		"id_exercicio" : 84,
+		"nome_exercicio" : "Rosca Martelo",
+		"grupo_muscular" : "Core",
+		"porcao_muscular" : "Eretores da Espinha",
+		"articulacao" : "Coluna Torácica e Lombar",
+		"movimento" : "Flexão"
+	},
+	{
+		"description" : "A rosca bíceps é um exercício que trabalha principalmente os músculos bíceps braquial, braquial e braquiorradial. Consiste em flexionar os cotovelos levantando um peso, mantendo os cotovelos próximos ao corpo e o tronco estável. A pegada com as palmas das mãos voltadas para cima aumenta a ativação do bíceps. Pode ser realizada com halteres ou barra, além de variações como rosca Scott e rosca inclinada.",
+		"id_exercicio" : 84,
+		"nome_exercicio" : "Rosca Martelo",
+		"grupo_muscular" : "Bíceps",
+		"porcao_muscular" : "Cabeça Curta",
+		"articulacao" : "Cotovelo",
+		"movimento" : "Extensão"
+	},
+	{
+		"description" : "A rosca bíceps é um exercício que trabalha principalmente os músculos bíceps braquial, braquial e braquiorradial. Consiste em flexionar os cotovelos levantando um peso, mantendo os cotovelos próximos ao corpo e o tronco estável. A pegada com as palmas das mãos voltadas para cima aumenta a ativação do bíceps. Pode ser realizada com halteres ou barra, além de variações como rosca Scott e rosca inclinada.",
+		"id_exercicio" : 84,
+		"nome_exercicio" : "Rosca Martelo",
+		"grupo_muscular" : "Bíceps",
+		"porcao_muscular" : "Braquial",
+		"articulacao" : "Cotovelo",
+		"movimento" : "Extensão"
+	},
+	{
+		"description" : "A rosca bíceps é um exercício que trabalha principalmente os músculos bíceps braquial, braquial e braquiorradial. Consiste em flexionar os cotovelos levantando um peso, mantendo os cotovelos próximos ao corpo e o tronco estável. A pegada com as palmas das mãos voltadas para cima aumenta a ativação do bíceps. Pode ser realizada com halteres ou barra, além de variações como rosca Scott e rosca inclinada.",
+		"id_exercicio" : 84,
+		"nome_exercicio" : "Rosca Martelo",
+		"grupo_muscular" : "Antebraço",
+		"porcao_muscular" : "Braquiorradial",
+		"articulacao" : "Cotovelo",
+		"movimento" : "Extensão"
+	},
+	{
+		"description" : "A rosca bíceps é um exercício que trabalha principalmente os músculos bíceps braquial, braquial e braquiorradial. Consiste em flexionar os cotovelos levantando um peso, mantendo os cotovelos próximos ao corpo e o tronco estável. A pegada com as palmas das mãos voltadas para cima aumenta a ativação do bíceps. Pode ser realizada com halteres ou barra, além de variações como rosca Scott e rosca inclinada.",
+		"id_exercicio" : 84,
+		"nome_exercicio" : "Rosca Martelo",
+		"grupo_muscular" : "Antebraço",
+		"porcao_muscular" : "Supinador",
+		"articulacao" : "Antebraço (Rádio-ulnar)",
+		"movimento" : "Pronação"
+	},
+	{
+		"description" : "A rosca bíceps é um exercício que trabalha principalmente os músculos bíceps braquial, braquial e braquiorradial. Consiste em flexionar os cotovelos levantando um peso, mantendo os cotovelos próximos ao corpo e o tronco estável. A pegada com as palmas das mãos voltadas para cima aumenta a ativação do bíceps. Pode ser realizada com halteres ou barra, além de variações como rosca Scott e rosca inclinada.",
+		"id_exercicio" : 84,
+		"nome_exercicio" : "Rosca Martelo",
+		"grupo_muscular" : "Bíceps",
+		"porcao_muscular" : "Cabeça Longa",
+		"articulacao" : "Antebraço (Rádio-ulnar)",
+		"movimento" : "Pronação"
+	},
+	{
+		"description" : "A rosca bíceps é um exercício que trabalha principalmente os músculos bíceps braquial, braquial e braquiorradial. Consiste em flexionar os cotovelos levantando um peso, mantendo os cotovelos próximos ao corpo e o tronco estável. A pegada com as palmas das mãos voltadas para cima aumenta a ativação do bíceps. Pode ser realizada com halteres ou barra, além de variações como rosca Scott e rosca inclinada.",
+		"id_exercicio" : 84,
+		"nome_exercicio" : "Rosca Martelo",
+		"grupo_muscular" : "Bíceps",
+		"porcao_muscular" : "Cabeça Curta",
+		"articulacao" : "Antebraço (Rádio-ulnar)",
+		"movimento" : "Pronação"
+	}
+]}
+

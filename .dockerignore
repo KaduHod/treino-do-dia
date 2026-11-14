@@ -1,0 +1,20 @@
+node_modules
+npm-debug.log*
+
+# Credenciais e overrides locais não entram na imagem
+.env
+.env.*
+!.env.example
+
+# Dados pessoais de treino: usam o volume em runtime
+data
+
+.git
+.gitignore
+.DS_Store
+
+# Só fazem sentido no repositório
+scripts
+README.md
+prompt_vibe_code_app_de_treino.txt
+*.png

@@ -1,0 +1,26 @@
+<div
+  id="day-stats"
+  class="grid grid-cols-2 gap-3 border-b border-sand/60 px-5 py-4 sm:grid-cols-4"
+  <%- typeof oob !== 'undefined' && oob ? 'hx-swap-oob="outerHTML"' : '' %>
+>
+  <div class="rounded-xl bg-cream/80 px-3 py-2 ring-1 ring-sand/50">
+    <p class="text-[10px] font-semibold uppercase tracking-wide text-olive">Exercícios</p>
+    <p class="mt-1 font-display text-lg font-semibold tabular-nums text-ink">
+      <%= view.stats.done %><span class="text-sm font-normal text-olive/70">/<%= view.stats.total %></span>
+    </p>
+  </div>
+  <div class="rounded-xl bg-cream/80 px-3 py-2 ring-1 ring-sand/50">
+    <p class="text-[10px] font-semibold uppercase tracking-wide text-olive">Séries</p>
+    <p class="mt-1 font-display text-lg font-semibold tabular-nums text-ink"><%= formatNumber(view.stats.sets) %></p>
+  </div>
+  <div class="rounded-xl bg-cream/80 px-3 py-2 ring-1 ring-sand/50">
+    <p class="text-[10px] font-semibold uppercase tracking-wide text-olive">Repetições</p>
+    <p class="mt-1 font-display text-lg font-semibold tabular-nums text-ink"><%= formatNumber(view.stats.reps) %></p>
+  </div>
+  <div class="rounded-xl bg-moss px-3 py-2 ring-1 ring-moss">
+    <p class="text-[10px] font-semibold uppercase tracking-wide text-sand">Volume</p>
+    <p class="mt-1 font-display text-lg font-semibold tabular-nums text-cream">
+      <%= formatNumber(view.stats.volume) %><span class="ml-1 text-xs font-normal text-gold">kg</span>
+    </p>
+  </div>
+</div>

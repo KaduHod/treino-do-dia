@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Treino do Dia — registro de treinos</title>
+  <meta name="description" content="Registro minimalista de treinos diários com HTMX e Tailwind CSS." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#FFFFEA',
+            ink: '#261D12',
+            bark: '#4D3A25',
+            moss: '#31401A',
+            olive: '#656643',
+            sage: '#A1A680',
+            sand: '#CBBDA0',
+            gold: '#BF9A54'
+          },
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+            display: ['Fraunces', 'ui-serif', 'Georgia', 'Cambria', 'Times New Roman', 'serif']
+          },
+          boxShadow: {
+            card: '0 26px 50px -34px rgba(38, 29, 18, 0.55)',
+            soft: '0 10px 22px -18px rgba(38, 29, 18, 0.65)'
+          }
+        }
+      }
+    };
+  </script>
+  <script src="https://unpkg.com/htmx.org@2.0.11/dist/htmx.min.js"></script>
+
+  <style>
+    :root { color-scheme: light; }
+
+    html { background-color: #FFFFEA; }
+
+    body {
+      background-image:
+        radial-gradient(70rem 45rem at 112% -12%, rgba(191, 154, 84, 0.18), transparent 62%),
+        radial-gradient(55rem 34rem at -12% 2%, rgba(161, 166, 128, 0.24), transparent 58%);
+      background-attachment: fixed;
+    }
+
+    ::selection { background: rgba(191, 154, 84, 0.35); color: #261D12; }
+
+    .thin-scrollbar { scrollbar-width: thin; scrollbar-color: #CBBDA0 transparent; }
+    .thin-scrollbar::-webkit-scrollbar { width: 8px; }
+    .thin-scrollbar::-webkit-scrollbar-thumb { background: #CBBDA0; border-radius: 9999px; }
+    .thin-scrollbar::-webkit-scrollbar-thumb:hover { background: #A1A680; }
+
+    dialog { color: #261D12; }
+    dialog::backdrop { background: rgba(38, 29, 18, 0.58); backdrop-filter: blur(3px); }
+    dialog[open] { animation: dialog-in 170ms ease-out; }
+    @keyframes dialog-in {
+      from { opacity: 0; transform: translateY(10px) scale(0.985); }
+      to { opacity: 1; transform: none; }
+    }
+
+    input[type='date']::-webkit-calendar-picker-indicator { opacity: 0.55; cursor: pointer; }
+
+    .htmx-indicator { opacity: 0; transition: opacity 150ms ease-in; }
+    .htmx-request .htmx-indicator,
+    .htmx-request.htmx-indicator { opacity: 1; }
+  </style>
+</head>
+<body class="min-h-full bg-cream font-sans text-ink antialiased">
+  <div class="h-1.5 w-full bg-gradient-to-r from-moss via-gold to-sand" aria-hidden="true"></div>
+
+  <div class="mx-auto flex min-h-screen max-w-6xl flex-col px-4 py-6 sm:px-6 lg:px-8">
+    <header class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div class="flex items-center gap-3">
+        <span
+          class="flex h-12 w-12 items-center justify-center rounded-2xl bg-moss text-gold shadow-soft ring-1 ring-gold/40"
+          aria-hidden="true"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+            <path d="M6.5 7v10M3.5 9.5v5M17.5 7v10M20.5 9.5v5M6.5 12h11" />
+          </svg>
+        </span>
+        <div>
+          <p class="inline-flex rounded-full bg-gold/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-bark ring-1 ring-gold/40">Diário de treino</p>
+          <h1 class="font-display text-2xl font-semibold leading-tight tracking-tight text-ink">Treino do Dia</h1>
+          <p class="text-xs text-olive">Registre exercícios, repetições e cargas — salvo automaticamente.</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2" aria-label="Selecionar data">
+        <button
+          type="button"
+          data-date-shift="-1"
+          class="flex h-9 w-9 items-center justify-center rounded-xl border border-sand bg-white/80 text-lg leading-none text-bark shadow-soft transition hover:border-gold hover:text-moss focus:outline-none focus:ring-2 focus:ring-gold/40"
+          aria-label="Dia anterior"
+        >‹</button>
+
+        <input
+          id="day-date"
+          name="date"
+          type="date"
+          value="<%= view.date %>"
+          hx-get="/day"
+          hx-target="#content"
+          hx-swap="innerHTML"
+          hx-trigger="change"
+          hx-include="#filter-form"
+          class="rounded-xl border border-sand bg-white/80 px-3 py-2 text-sm font-semibold text-bark shadow-soft focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30"
+          aria-label="Data do treino"
+        />
+
+        <button
+          type="button"
+          data-date-shift="1"
+          class="flex h-9 w-9 items-center justify-center rounded-xl border border-sand bg-white/80 text-lg leading-none text-bark shadow-soft transition hover:border-gold hover:text-moss focus:outline-none focus:ring-2 focus:ring-gold/40"
+          aria-label="Próximo dia"
+        >›</button>
+
+        <button
+          type="button"
+          data-date-today
+          class="rounded-xl bg-moss px-3.5 py-2 text-sm font-semibold text-cream shadow-soft ring-1 ring-gold/25 transition hover:bg-bark focus:outline-none focus:ring-2 focus:ring-gold/50"
+        >Hoje</button>
+      </div>
+    </header>
+
+    <main id="content" class="mt-6 flex-1">
+      <%- include('partials/content', { view }) %>
+    </main>
+
+    <footer class="mt-8 flex flex-col gap-1 border-t border-sand/70 pt-4 text-[11px] text-olive sm:flex-row sm:items-center sm:justify-between">
+      <p>
+        API de exercícios:
+        <code class="rounded-md bg-sand/25 px-1.5 py-0.5 font-medium text-bark"><%= apiBaseUrl %></code>
+      </p>
+      <p>Express · HTMX · Tailwind CSS · dados em <code class="rounded-md bg-sand/25 px-1.5 py-0.5 font-medium text-bark">data/workouts.json</code></p>
+    </footer>
+  </div>
+
+  <dialog
+    id="exercise-modal"
+    aria-label="Detalhes do exercício"
+    class="w-[min(46rem,92vw)] overflow-hidden rounded-3xl border border-sand/70 bg-cream p-0 text-left shadow-2xl"
+  ></dialog>
+
+  <dialog
+    id="reference-modal"
+    aria-label="Referência muscular"
+    class="w-[min(52rem,94vw)] overflow-hidden rounded-3xl border border-sand/70 bg-cream p-0 text-left shadow-2xl"
+  ></dialog>
+
+  <div
+    id="toast"
+    role="status"
+    class="pointer-events-none fixed bottom-4 right-4 z-50 hidden max-w-sm rounded-xl bg-ink px-4 py-3 text-sm text-cream shadow-lg ring-1 ring-gold/40"
+  ></div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

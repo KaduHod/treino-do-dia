@@ -1,0 +1,570 @@
+[
+  {
+    "id": 88,
+    "name": "Supino Reto",
+    "description": "O supino reto e um exercicio de empurrar que trabalha principalmente o peitoral maior, com participacao de triceps e deltoide anterior. Execute com escapulas retraidas e controle a descida da barra ate o meio do peito.",
+    "info_link": "https://en.wikipedia.org/wiki/Bench_press",
+    "mappings": [
+      {
+        "muscle_portion": "Peitoral Maior (porcao esternal)",
+        "muscle_group": "Peito",
+        "joint": "Ombro e Escapula",
+        "movement": "Aducao horizontal e flexao",
+        "role": "agonist"
+      },
+      {
+        "muscle_portion": "Triceps Braquial",
+        "muscle_group": "Triceps",
+        "joint": "Cotovelo",
+        "movement": "Extensao",
+        "role": "synergist"
+      },
+      {
+        "muscle_portion": "Trapezio Medio",
+        "muscle_group": "Costas",
+        "joint": "Escapula e Clavicula",
+        "movement": "Aducao (Retracao)",
+        "role": "stabilizer"
+      }
+    ]
+  },
+  {
+    "id": 84,
+    "name": "Rosca Martelo",
+    "description": "Bicep curls are weight training exercises that isolate the biceps brachii and brachialis, performed with a neutral grip.",
+    "info_link": "https://en.wikipedia.org/wiki/hammer_curl"
+  },
+  {
+    "id": 21,
+    "name": "Prancha Isometrica",
+    "description": "Exercicio isometrico de estabilizacao do core. Mantenha o corpo alinhado da cabeca aos calcanhares, com abdomen e gluteos contraidos pelo tempo determinado.",
+    "info_link": "https://en.wikipedia.org/wiki/Plank_(exercise)"
+  },
+  {
+    "id": 1,
+    "name": "Supino Inclinado com Halteres",
+    "description": "Variacao do supino com banco inclinado (30 a 45 graus). Aumenta a enfase na porcao clavicular do peitoral e exige mais estabilizacao dos ombros.",
+    "info_link": "https://en.wikipedia.org/wiki/Bench_press",
+    "mappings": [
+      {
+        "muscle_portion": "Peitoral Maior (porcao clavicular)",
+        "muscle_group": "Peito",
+        "joint": "Ombro",
+        "movement": "Flexao e aducao horizontal",
+        "role": "agonist"
+      },
+      {
+        "muscle_portion": "Deltoide Anterior",
+        "muscle_group": "Ombros",
+        "joint": "Ombro",
+        "movement": "Flexao",
+        "role": "synergist"
+      },
+      {
+        "muscle_portion": "Triceps Braquial",
+        "muscle_group": "Triceps",
+        "joint": "Cotovelo",
+        "movement": "Extensao",
+        "role": "synergist"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Crucifixo na Polia",
+    "description": "Movimento de aducao horizontal com cabos, que mantem tensao continua no peitoral durante todo o arco de movimento.",
+    "info_link": "https://en.wikipedia.org/wiki/Cable_fly",
+    "mappings": [
+      {
+        "muscle_portion": "Peitoral Maior",
+        "muscle_group": "Peito",
+        "joint": "Ombro",
+        "movement": "Aducao horizontal",
+        "role": "agonist"
+      },
+      {
+        "muscle_portion": "Deltoide Anterior",
+        "muscle_group": "Ombros",
+        "joint": "Ombro",
+        "movement": "Flexao assistida",
+        "role": "stabilizer"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Flexao de Braco",
+    "description": "Exercicio com peso corporal para peito, triceps e core. Mantenha o corpo rigido e o quadril alinhado durante as repeticoes.",
+    "info_link": "https://en.wikipedia.org/wiki/Push-up",
+    "mappings": [
+      {
+        "muscle_portion": "Peitoral Maior",
+        "muscle_group": "Peito",
+        "joint": "Ombro e Cotovelo",
+        "movement": "Aducao horizontal e extensao",
+        "role": "agonist"
+      },
+      {
+        "muscle_portion": "Reto Abdominal",
+        "muscle_group": "Abdomen",
+        "joint": "Coluna",
+        "movement": "Estabilizacao isometrica",
+        "role": "stabilizer"
+      },
+      {
+        "muscle_portion": "Triceps Braquial",
+        "muscle_group": "Triceps",
+        "joint": "Cotovelo",
+        "movement": "Extensao",
+        "role": "synergist"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Puxada Frontal",
+    "description": "Puxada na polia alta para dorsais. Puxe a barra em direcao ao peito, mantendo o tronco levemente inclinado e sem balancar.",
+    "info_link": "https://en.wikipedia.org/wiki/Pulldown_exercise",
+    "mappings": [
+      {
+        "muscle_portion": "Latissimo do Dorso",
+        "muscle_group": "Costas",
+        "joint": "Ombro",
+        "movement": "Aducao e extensao",
+        "role": "agonist"
+      },
+      {
+        "muscle_portion": "Biceps Braquial",
+        "muscle_group": "Biceps",
+        "joint": "Cotovelo",
+        "movement": "Flexao",
+        "role": "synergist"
+      },
+      {
+        "muscle_portion": "Trapezio Inferior",
+        "muscle_group": "Costas",
+        "joint": "Escapula",
+        "movement": "Depressao e retracao",
+        "role": "stabilizer"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Remada Curvada",
+    "description": "Remada com barra e tronco inclinado. Excelente para espessura das costas; mantenha a coluna neutra e o core firme.",
+    "info_link": "https://en.wikipedia.org/wiki/Bent-over_row",
+    "mappings": [
+      {
+        "muscle_portion": "Latissimo do Dorso",
+        "muscle_group": "Costas",
+        "joint": "Ombro",
+        "movement": "Extensao e aducao",
+        "role": "agonist"
+      },
+      {
+        "muscle_portion": "Romboides",
+        "muscle_group": "Costas",
+        "joint": "Escapula",
+        "movement": "Retracao",
+        "role": "agonist"
+      },
+      {
+        "muscle_portion": "Eretores da Espinha",
+        "muscle_group": "Costas",
+        "joint": "Coluna",
+        "movement": "Estabilizacao isometrica",
+        "role": "stabilizer"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Remada Baixa",
+    "description": "Remada sentada na polia baixa com pegada neutra. Foque em levar os cotovelos para tras sem usar impulso do tronco.",
+    "info_link": "https://en.wikipedia.org/wiki/Seated_row",
+    "mappings": [
+      {
+        "muscle_portion": "Latissimo do Dorso",
+        "muscle_group": "Costas",
+        "joint": "Ombro",
+        "movement": "Extensao",
+        "role": "agonist"
+      },
+      {
+        "muscle_portion": "Romboides e Trapezio Medio",
+        "muscle_group": "Costas",
+        "joint": "Escapula",
+        "movement": "Retracao",
+        "role": "agonist"
+      },
+      {
+        "muscle_portion": "Biceps Braquial",
+        "muscle_group": "Biceps",
+        "joint": "Cotovelo",
+        "movement": "Flexao",
+        "role": "synergist"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Agachamento Livre",
+    "description": "Padrao fundamental de agachamento com barra. Desca ate coxas paralelas ou abaixo, mantendo joelhos alinhados aos pes e coluna neutra.",
+    "info_link": "https://en.wikipedia.org/wiki/Squat_(exercise)",
+    "mappings": [
+      {
+        "muscle_portion": "Quadriceps",
+        "muscle_group": "Pernas",
+        "joint": "Joelho",
+        "movement": "Extensao",
+        "role": "agonist"
+      },
+      {
+        "muscle_portion": "Gluteo Maximo",
+        "muscle_group": "Gluteos",
+        "joint": "Quadril",
+        "movement": "Extensao",
+        "role": "synergist"
+      },
+      {
+        "muscle_portion": "Eretores da Espinha",
+        "muscle_group": "Costas",
+        "joint": "Coluna",
+        "movement": "Estabilizacao isometrica",
+        "role": "stabilizer"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Leg Press 45 Graus",
+    "description": "Exercicio de empurrar com as pernas na maquina inclinada. Permite alta carga com menor demanda de estabilizacao da coluna.",
+    "info_link": "https://en.wikipedia.org/wiki/Leg_press",
+    "mappings": [
+      {
+        "muscle_portion": "Quadriceps",
+        "muscle_group": "Pernas",
+        "joint": "Joelho",
+        "movement": "Extensao",
+        "role": "agonist"
+      },
+      {
+        "muscle_portion": "Gluteo Maximo",
+        "muscle_group": "Gluteos",
+        "joint": "Quadril",
+        "movement": "Extensao",
+        "role": "synergist"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Cadeira Extensora",
+    "description": "Isolamento do quadriceps sentado na maquina. Controle a extensao completa e evite impulso com o tronco.",
+    "info_link": "https://en.wikipedia.org/wiki/Leg_extension",
+    "mappings": [
+      {
+        "muscle_portion": "Quadriceps",
+        "muscle_group": "Pernas",
+        "joint": "Joelho",
+        "movement": "Extensao",
+        "role": "agonist"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Mesa Flexora",
+    "description": "Isolamento dos isquiotibiais deitado na maquina. Flexione os joelhos sem tirar o quadril do apoio.",
+    "info_link": "https://en.wikipedia.org/wiki/Leg_curl",
+    "mappings": [
+      {
+        "muscle_portion": "Biceps Femoral",
+        "muscle_group": "Pernas",
+        "joint": "Joelho",
+        "movement": "Flexao",
+        "role": "agonist"
+      },
+      {
+        "muscle_portion": "Semitendinoso e Semimembranoso",
+        "muscle_group": "Pernas",
+        "joint": "Joelho",
+        "movement": "Flexao",
+        "role": "agonist"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Stiff com Barra",
+    "description": "Exercicio de dobradiça de quadril com joelhos semi-estendidos. Alonga e fortalece isquiotibiais e gluteos; mantenha a barra proxima as pernas.",
+    "info_link": "https://en.wikipedia.org/wiki/Romanian_deadlift",
+    "mappings": [
+      {
+        "muscle_portion": "Biceps Femoral",
+        "muscle_group": "Pernas",
+        "joint": "Quadril",
+        "movement": "Extensao",
+        "role": "agonist"
+      },
+      {
+        "muscle_portion": "Gluteo Maximo",
+        "muscle_group": "Gluteos",
+        "joint": "Quadril",
+        "movement": "Extensao",
+        "role": "agonist"
+      },
+      {
+        "muscle_portion": "Eretores da Espinha",
+        "muscle_group": "Costas",
+        "joint": "Coluna",
+        "movement": "Estabilizacao isometrica",
+        "role": "stabilizer"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Desenvolvimento com Halteres",
+    "description": "Empurre os halteres acima da cabeca sentado ou em pe. Trabalha deltoides com participacao de triceps e trapezio.",
+    "info_link": "https://en.wikipedia.org/wiki/Overhead_press",
+    "mappings": [
+      {
+        "muscle_portion": "Deltoide Anterior e Medio",
+        "muscle_group": "Ombros",
+        "joint": "Ombro",
+        "movement": "Abducao e flexao",
+        "role": "agonist"
+      },
+      {
+        "muscle_portion": "Triceps Braquial",
+        "muscle_group": "Triceps",
+        "joint": "Cotovelo",
+        "movement": "Extensao",
+        "role": "synergist"
+      },
+      {
+        "muscle_portion": "Trapezio Superior",
+        "muscle_group": "Costas",
+        "joint": "Escapula",
+        "movement": "Elevacao",
+        "role": "synergist"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "name": "Elevacao Lateral",
+    "description": "Isolamento do deltoide medio com halteres. Eleve os bracos ate a linha dos ombros, com leve flexao de cotovelo.",
+    "info_link": "https://en.wikipedia.org/wiki/Lateral_raise",
+    "mappings": [
+      {
+        "muscle_portion": "Deltoide Medio",
+        "muscle_group": "Ombros",
+        "joint": "Ombro",
+        "movement": "Abducao",
+        "role": "agonist"
+      },
+      {
+        "muscle_portion": "Supraespinhal",
+        "muscle_group": "Ombros",
+        "joint": "Ombro",
+        "movement": "Abducao inicial",
+        "role": "synergist"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Rosca Direta com Barra",
+    "description": "Flexao de cotovelo com barra reta em pe. Mantenha os cotovelos junto ao tronco e evite balanco do corpo.",
+    "info_link": "https://en.wikipedia.org/wiki/Biceps_curl",
+    "mappings": [
+      {
+        "muscle_portion": "Biceps Braquial",
+        "muscle_group": "Biceps",
+        "joint": "Cotovelo",
+        "movement": "Flexao",
+        "role": "agonist"
+      },
+      {
+        "muscle_portion": "Braquial",
+        "muscle_group": "Biceps",
+        "joint": "Cotovelo",
+        "movement": "Flexao",
+        "role": "synergist"
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Rosca Scott",
+    "description": "Rosca com banco Scott que limita o impulso do tronco e enfatiza a porcao inferior do biceps.",
+    "info_link": "https://en.wikipedia.org/wiki/Preacher_curl",
+    "mappings": [
+      {
+        "muscle_portion": "Biceps Braquial (cabeca curta)",
+        "muscle_group": "Biceps",
+        "joint": "Cotovelo",
+        "movement": "Flexao",
+        "role": "agonist"
+      },
+      {
+        "muscle_portion": "Braquial",
+        "muscle_group": "Biceps",
+        "joint": "Cotovelo",
+        "movement": "Flexao",
+        "role": "synergist"
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Triceps na Polia",
+    "description": "Extensao de cotovelo na polia alta com corda ou barra. Mantenha os cotovelos fixos ao lado do tronco.",
+    "info_link": "https://en.wikipedia.org/wiki/Triceps_pushdown",
+    "mappings": [
+      {
+        "muscle_portion": "Triceps Braquial (cabeca lateral e medial)",
+        "muscle_group": "Triceps",
+        "joint": "Cotovelo",
+        "movement": "Extensao",
+        "role": "agonist"
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Triceps Testa",
+    "description": "Extensao de cotovelo deitado com barra, levando a barra em direcao a testa. Alonga fortemente a cabeca longa do triceps.",
+    "info_link": "https://en.wikipedia.org/wiki/Triceps_extension",
+    "mappings": [
+      {
+        "muscle_portion": "Triceps Braquial (cabeca longa)",
+        "muscle_group": "Triceps",
+        "joint": "Cotovelo",
+        "movement": "Extensao",
+        "role": "agonist"
+      },
+      {
+        "muscle_portion": "Triceps Braquial (cabeca lateral)",
+        "muscle_group": "Triceps",
+        "joint": "Cotovelo",
+        "movement": "Extensao",
+        "role": "synergist"
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Mergulho em Paralelas",
+    "description": "Exercicio com peso corporal nas paralelas, com foco em triceps e peitoral inferior. Incline o tronco conforme a enfase desejada.",
+    "info_link": "https://en.wikipedia.org/wiki/Dip_(exercise)",
+    "mappings": [
+      {
+        "muscle_portion": "Triceps Braquial",
+        "muscle_group": "Triceps",
+        "joint": "Cotovelo",
+        "movement": "Extensao",
+        "role": "agonist"
+      },
+      {
+        "muscle_portion": "Peitoral Maior (porcao inferior)",
+        "muscle_group": "Peito",
+        "joint": "Ombro",
+        "movement": "Extensao e aducao",
+        "role": "synergist"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Abdominal Supra",
+    "description": "Flexao de tronco no solo para o reto abdominal. Evite puxar o pescoco; o movimento vem da coluna e do abdomen.",
+    "info_link": "https://en.wikipedia.org/wiki/Crunch_(exercise)",
+    "mappings": [
+      {
+        "muscle_portion": "Reto Abdominal",
+        "muscle_group": "Abdomen",
+        "joint": "Coluna",
+        "movement": "Flexao",
+        "role": "agonist"
+      },
+      {
+        "muscle_portion": "Obliquos",
+        "muscle_group": "Abdomen",
+        "joint": "Coluna",
+        "movement": "Estabilizacao",
+        "role": "synergist"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "name": "Elevacao Pelvica",
+    "description": "Extensao de quadril apoiado no banco com barra ou anilha. Foque em contrair os gluteos no topo sem hiperextender a lombar.",
+    "info_link": "https://en.wikipedia.org/wiki/Hip_thrust",
+    "mappings": [
+      {
+        "muscle_portion": "Gluteo Maximo",
+        "muscle_group": "Gluteos",
+        "joint": "Quadril",
+        "movement": "Extensao",
+        "role": "agonist"
+      },
+      {
+        "muscle_portion": "Isquiotibiais",
+        "muscle_group": "Pernas",
+        "joint": "Joelho e Quadril",
+        "movement": "Estabilizacao",
+        "role": "synergist"
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "name": "Cadeira Abdutora",
+    "description": "Abducao de quadril na maquina, com enfase no gluteo medio. Controle o retorno para evitar impulso.",
+    "info_link": "https://en.wikipedia.org/wiki/Abductor_muscle_exercise",
+    "mappings": [
+      {
+        "muscle_portion": "Gluteo Medio",
+        "muscle_group": "Gluteos",
+        "joint": "Quadril",
+        "movement": "Abducao",
+        "role": "agonist"
+      },
+      {
+        "muscle_portion": "Gluteo Minimo",
+        "muscle_group": "Gluteos",
+        "joint": "Quadril",
+        "movement": "Abducao",
+        "role": "synergist"
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "name": "Panturrilha em Pe",
+    "description": "Flexao plantar em pe na maquina ou com peso livre. Desca o calcanhar ao maximo e suba ate a ponta dos pes.",
+    "info_link": "https://en.wikipedia.org/wiki/Calf_raise",
+    "mappings": [
+      {
+        "muscle_portion": "Gastrocnemio",
+        "muscle_group": "Panturrilha",
+        "joint": "Tornozelo",
+        "movement": "Flexao plantar",
+        "role": "agonist"
+      },
+      {
+        "muscle_portion": "Soleo",
+        "muscle_group": "Panturrilha",
+        "joint": "Tornozelo",
+        "movement": "Flexao plantar",
+        "role": "synergist"
+      }
+    ]
+  }
+]
+

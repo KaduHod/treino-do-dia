@@ -1,0 +1,55 @@
+Quero construir um aplicativo web minimalista de registro de treinos diários (workout tracker) para uso pessoal. O projeto deve ser simples, autocontido e armazenar os dados localmente em arquivos JSON.
+
+### Stack Tecnológica Obrigatória:
+- **Backend:** Node.js utilizando **ES Modules** (`"type": "module"`) e **Express**.
+- **Persistência de Dados:** Arquivos JSON locais (ex: `data/workouts.json` para salvar os registros por data).
+- **Frontend / UI:** 
+  - **Tailwind CSS** (via CDN) para estilização moderna, limpa e responsiva.
+  - **HTMX** (via CDN) para interações dinâmicas sem recarregar a página (como marcar/desmarcar exercícios realizados no dia, atualizar cargas/repetições, carregar listas, etc.).
+
+### Estrutura de Dados dos Exercícios (Baseada na minha API):
+Os dados dos exercícios seguem estes formatos (que podem ser consumidos de um endpoint ou mockados em um arquivo JSON local para testes):
+
+Formato 1 (Lista simples):
+```json
+{
+  "description": "Bicep curls are weight training exercises...",
+  "id": 84,
+  "info_link": "https://en.wikipedia.org/wiki/hammer_curl",
+  "name": "Rosca Martelo"
+}
+```
+
+Formato 2 (Com mapeamento muscular detalhado):
+```json
+{
+  "id": 88,
+  "name": "Supino Reto",
+  "description": "O supino é um exercício...",
+  "info_link": "https://en.wikipedia.org/wiki/Bench_press",
+  "mappings": [
+    {
+      "muscle_portion": "Trapézio Médio",
+      "muscle_group": "Costas",
+      "joint": "Escápula e Clavícula",
+      "movement": "Adução (Retração)",
+      "role": "stabilizer"
+    }
+  ]
+}
+```
+
+### Requisitos e Funcionalidades do App:
+1. **Seleção de Data / Dashboard Diário:** 
+   - Uma interface limpa onde posso selecionar um dia (data atual por padrão) para ver ou registrar o treino daquele dia.
+2. **Listagem e Busca de Exercícios:**
+   - Exibir a lista de exercícios disponíveis (puxando da API ou de uma base local baseada na estrutura fornecida).
+   - Permitir filtrar/buscar exercícios por nome ou grupo muscular (`muscle_group`).
+3. **Registro de Execução, Repetições e Carga:**
+   - Para cada dia selecionado, devo conseguir marcar quais exercícios realizei (via checkbox ou botão de ação com HTMX que atualiza o estado instantaneamente no backend e salva no JSON).
+   - **Campos obrigatórios no registro do exercício:** Cada exercício marcado/registrado no dia deve ter campos específicos para informar **Repetições** (ex: `reps` ou `3x12`) e **Carga** (ex: `weight` em kg).
+   - A atualização desses valores (repetições e carga) deve salvar automaticamente ou via botão rápido usando HTMX, mantendo o estado persistido no `data/workouts.json` vinculado à data e ao `id` do exercício.
+4. **Organização do Projeto:**
+   - Arquitetura limpa e modular (ex: `server.js`, rotas em `/routes`, manipulação de arquivos em `/models` ou `/services`, views HTML renderizadas com template engine leve ou arquivos HTML estáticos servidos pelo Express + HTMX).
+
+Por favor, crie a estrutura de pastas inicial, os arquivos principais do projeto (`package.json`, `server.js`, rotas e as views HTML iniciais com Tailwind e HTMX) funcionais e prontos para rodar.

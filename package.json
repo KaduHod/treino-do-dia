@@ -1,0 +1,29 @@
+{
+  "name": "treino-do-dia",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Workout tracker minimalista com Express, HTMX e Tailwind CSS, com persistencia local em JSON.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --env-file=.env server.js",
+    "dev": "node --env-file=.env --watch server.js",
+    "mock": "node --env-file=.env mock-api/server.js",
+    "dev:mock": "node --watch mock-api/server.js",
+    "dev:all": "node --env-file=.env scripts/dev-all.js"
+  },
+  "keywords": [
+    "workout",
+    "tracker",
+    "htmx",
+    "express",
+    "tailwind"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.22.3"
+  }
+}
