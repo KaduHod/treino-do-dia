@@ -6,3 +6,4 @@ npm-debug.log*
 !.env.example
 data/workouts.json
 data/*.tmp
+package-lock.json
