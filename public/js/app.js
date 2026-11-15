@@ -17,7 +17,7 @@
   }
 
   function applyTheme(name, persist = true) {
-    const theme = THEMES.includes(name) ? name : THEMES[0];
+    const theme = THEMES.includes(name) ? name : THEMES[5];
     document.documentElement.dataset.theme = theme;
 
     const select = themeSelect();
