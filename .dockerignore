@@ -6,7 +6,7 @@ npm-debug.log*
 .env.*
 !.env.example
 
-# Dados pessoais de treino: usam o volume em runtime
+# Dados pessoais/legado: importados via script no host, não entram na imagem
 data
 
 .git

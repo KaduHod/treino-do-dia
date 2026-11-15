@@ -1,178 +1,238 @@
-import fs from 'node:fs/promises';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { config } from '../config.js';
+import { getPool, withTransaction } from './db.js';
 
 /**
- * Persistência local dos treinos em data/workouts.json.
+ * Persistência dos treinos no MySQL (schema em db/init/01-schema.sql).
  *
- * Formato do arquivo:
+ * Estrutura: users -> workouts (um dia por usuário) -> workout_entries.
+ * Enquanto o login não existe, todos os registros pertencem ao usuário
+ * DEFAULT_USER_ID (seed "default", id 1).
+ *
+ * O retorno mantém o formato que o dashboard e as views já consumiam:
  * {
- *   "2026-11-13": {
- *     "date": "2026-11-13",
- *     "entries": [
- *       {
- *         "exerciseId": 88,
- *         "exerciseName": "Supino Reto",
- *         "reps": "3x12",
- *         "weight": 40,
- *         "done": true,
- *         "createdAt": "...",
- *         "updatedAt": "..."
- *       }
- *     ],
- *     "createdAt": "...",
- *     "updatedAt": "..."
- *   }
+ *   date: '2026-11-13',
+ *   entries: [
+ *     { exerciseId, exerciseName, reps, weight, done, createdAt, updatedAt }
+ *   ],
+ *   createdAt, updatedAt
  * }
  */
 
-const DATA_DIR = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'data');
-const DATA_FILE = path.join(DATA_DIR, 'workouts.json');
+const USER_ID = config.database.defaultUserId;
 
-let writeQueue = Promise.resolve();
+const ENTRY_COLUMNS = `
+  e.id,
+  e.workout_id,
+  e.exercise_id,
+  e.exercise_name,
+  e.reps,
+  e.weight_kg,
+  e.done,
+  e.created_at,
+  e.updated_at
+`;
 
-async function readDatabase() {
-  try {
-    const raw = await fs.readFile(DATA_FILE, 'utf8');
-    if (!raw.trim()) return {};
-    const parsed = JSON.parse(raw);
-    return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
-  } catch (error) {
-    if (error.code === 'ENOENT') return {};
-    if (error instanceof SyntaxError) {
-      throw new Error(`Arquivo de dados inválido (${DATA_FILE}): ${error.message}`);
-    }
-    throw error;
-  }
+function toIso(value) {
+  if (value == null) return null;
+  if (value instanceof Date) return value.toISOString();
+
+  const text = String(value);
+  const parsed = new Date(text.includes('T') ? text : `${text.replace(' ', 'T')}Z`);
+  return Number.isNaN(parsed.getTime()) ? null : parsed.toISOString();
 }
 
-async function writeDatabase(database) {
-  await fs.mkdir(DATA_DIR, { recursive: true });
-  const temporaryFile = `${DATA_FILE}.${process.pid}.tmp`;
-  await fs.writeFile(temporaryFile, `${JSON.stringify(database, null, 2)}\n`, 'utf8');
-  await fs.rename(temporaryFile, DATA_FILE);
+function normalizeWeight(value, fallback = 0) {
+  const weight = Number(value);
+  return Number.isFinite(weight) && weight >= 0 ? weight : fallback;
 }
 
-function normalizeEntry(raw) {
-  const exerciseId = Number(raw?.exerciseId);
-  if (!Number.isInteger(exerciseId) || exerciseId <= 0) return null;
-
-  const weight = Number(raw?.weight);
-
+function mapEntry(row) {
   return {
-    exerciseId,
-    exerciseName: String(raw?.exerciseName ?? ''),
-    reps: String(raw?.reps ?? ''),
-    weight: Number.isFinite(weight) && weight >= 0 ? weight : 0,
-    done: Boolean(raw?.done),
-    createdAt: raw?.createdAt ?? null,
-    updatedAt: raw?.updatedAt ?? null,
+    exerciseId: Number(row.exercise_id),
+    exerciseName: row.exercise_name ?? '',
+    reps: String(row.reps ?? ''),
+    weight: normalizeWeight(row.weight_kg),
+    done: Boolean(row.done),
+    createdAt: toIso(row.created_at),
+    updatedAt: toIso(row.updated_at),
   };
 }
 
-function normalizeDay(raw, date) {
-  const entries = Array.isArray(raw?.entries)
-    ? raw.entries.map(normalizeEntry).filter(Boolean)
-    : [];
+async function findEntry(connection, workoutId, exerciseId, { forUpdate = false } = {}) {
+  const [rows] = await connection.execute(
+    `SELECT ${ENTRY_COLUMNS}
+       FROM workout_entries e
+      WHERE e.workout_id = ? AND e.exercise_id = ?
+      ${forUpdate ? 'FOR UPDATE' : ''}`,
+    [workoutId, exerciseId],
+  );
+
+  return rows[0] ?? null;
+}
+
+async function touchWorkout(connection, workoutId) {
+  await connection.execute(
+    'UPDATE workouts SET updated_at = CURRENT_TIMESTAMP(3) WHERE id = ?',
+    [workoutId],
+  );
+}
+
+/**
+ * Dia de treino do usuário atual, com os exercícios na ordem de criação.
+ */
+export async function getDay(date) {
+  const [workoutRows] = await getPool().execute(
+    'SELECT id, created_at, updated_at FROM workouts WHERE user_id = ? AND workout_date = ? LIMIT 1',
+    [USER_ID, date],
+  );
+
+  const workout = workoutRows[0];
+  if (!workout) return null;
+
+  const [entryRows] = await getPool().execute(
+    `SELECT ${ENTRY_COLUMNS}
+       FROM workout_entries e
+      WHERE e.workout_id = ?
+      ORDER BY e.id`,
+    [workout.id],
+  );
 
   return {
     date,
-    entries,
-    createdAt: raw?.createdAt ?? null,
-    updatedAt: raw?.updatedAt ?? null,
+    entries: entryRows.map(mapEntry),
+    createdAt: toIso(workout.created_at),
+    updatedAt: toIso(workout.updated_at),
   };
 }
 
-function enqueue(task) {
-  const result = writeQueue.then(task, task);
-  writeQueue = result.then(
-    () => undefined,
-    () => undefined,
-  );
-  return result;
-}
-
-function mutateDay(date, mutator) {
-  return enqueue(async () => {
-    const database = await readDatabase();
-    const existing = database[date] ? normalizeDay(database[date], date) : null;
-    const now = new Date().toISOString();
-    const day = {
-      date,
-      entries: existing ? [...existing.entries] : [],
-      createdAt: existing?.createdAt ?? now,
-      updatedAt: now,
-    };
-
-    const result = mutator(day);
-
-    day.updatedAt = new Date().toISOString();
-    if (day.entries.length > 0) {
-      database[date] = day;
-    } else {
-      delete database[date];
-    }
-    await writeDatabase(database);
-
-    return result;
-  });
-}
-
-export async function getDay(date) {
-  const database = await readDatabase();
-  const raw = database[date];
-  return raw ? normalizeDay(raw, date) : null;
-}
-
+/**
+ * Adiciona um exercício ao dia. Se ele já existir, atualiza o nome (quando
+ * informado) e o updatedAt — mesmo comportamento do armazenamento anterior.
+ */
 export function addEntry(date, { exerciseId, exerciseName = '', reps = '3x12', weight = 0, done = true }) {
-  return mutateDay(date, (day) => {
-    const now = new Date().toISOString();
-    const existing = day.entries.find((entry) => entry.exerciseId === exerciseId);
+  return withTransaction(async (connection) => {
+    // Cria o dia se ainda não existir e recupera o id (inclusive no upsert).
+    const [workoutResult] = await connection.execute(
+      `INSERT INTO workouts (user_id, workout_date)
+       VALUES (?, ?)
+       ON DUPLICATE KEY UPDATE id = LAST_INSERT_ID(id)`,
+      [USER_ID, date],
+    );
+    const workoutId = workoutResult.insertId;
+
+    const existing = await findEntry(connection, workoutId, exerciseId, { forUpdate: true });
 
     if (existing) {
-      if (exerciseName) existing.exerciseName = exerciseName;
-      existing.updatedAt = now;
-      return existing;
+      if (exerciseName) {
+        await connection.execute(
+          'UPDATE workout_entries SET exercise_name = ?, updated_at = CURRENT_TIMESTAMP(3) WHERE id = ?',
+          [String(exerciseName), existing.id],
+        );
+      } else {
+        await connection.execute(
+          'UPDATE workout_entries SET updated_at = CURRENT_TIMESTAMP(3) WHERE id = ?',
+          [existing.id],
+        );
+      }
+
+      await touchWorkout(connection, workoutId);
+      return mapEntry(await findEntry(connection, workoutId, exerciseId));
     }
 
-    const entry = {
-      exerciseId,
-      exerciseName,
-      reps: String(reps),
-      weight: Number.isFinite(Number(weight)) && Number(weight) >= 0 ? Number(weight) : 0,
-      done: Boolean(done),
-      createdAt: now,
-      updatedAt: now,
-    };
+    await connection.execute(
+      `INSERT INTO workout_entries
+         (workout_id, exercise_id, exercise_name, reps, weight_kg, done)
+       VALUES (?, ?, ?, ?, ?, ?)`,
+      [
+        workoutId,
+        exerciseId,
+        String(exerciseName ?? ''),
+        String(reps),
+        normalizeWeight(weight),
+        done ? 1 : 0,
+      ],
+    );
 
-    day.entries.push(entry);
-    return entry;
+    await touchWorkout(connection, workoutId);
+    return mapEntry(await findEntry(connection, workoutId, exerciseId));
   });
 }
 
+/**
+ * Atualiza reps/carga/feito de um registro do dia.
+ * Lança erro com code ENTRY_NOT_FOUND quando o exercício não está no dia.
+ */
 export function updateEntry(date, exerciseId, changes) {
-  return mutateDay(date, (day) => {
-    const index = day.entries.findIndex((entry) => entry.exerciseId === exerciseId);
-    if (index === -1) {
+  return withTransaction(async (connection) => {
+    const [rows] = await connection.execute(
+      `SELECT ${ENTRY_COLUMNS}
+         FROM workout_entries e
+         JOIN workouts w ON w.id = e.workout_id
+        WHERE w.user_id = ? AND w.workout_date = ? AND e.exercise_id = ?
+        FOR UPDATE`,
+      [USER_ID, date, exerciseId],
+    );
+
+    const current = rows[0];
+    if (!current) {
       const error = new Error('Registro não encontrado neste dia.');
       error.code = 'ENTRY_NOT_FOUND';
       throw error;
     }
 
-    const next = { ...day.entries[index], updatedAt: new Date().toISOString() };
-    if (changes.reps !== undefined) next.reps = changes.reps;
-    if (changes.weight !== undefined) next.weight = changes.weight;
-    if (changes.done !== undefined) next.done = changes.done;
+    const reps = changes.reps !== undefined ? String(changes.reps) : current.reps;
+    const weight = changes.weight !== undefined
+      ? normalizeWeight(changes.weight, normalizeWeight(current.weight_kg))
+      : normalizeWeight(current.weight_kg);
+    const done = changes.done !== undefined ? (changes.done ? 1 : 0) : current.done;
 
-    day.entries[index] = next;
-    return next;
+    await connection.execute(
+      `UPDATE workout_entries
+          SET reps = ?, weight_kg = ?, done = ?, updated_at = CURRENT_TIMESTAMP(3)
+        WHERE id = ?`,
+      [reps, weight, done, current.id],
+    );
+    await touchWorkout(connection, current.workout_id);
+
+    const [updatedRows] = await connection.execute(
+      `SELECT ${ENTRY_COLUMNS} FROM workout_entries e WHERE e.id = ?`,
+      [current.id],
+    );
+    return mapEntry(updatedRows[0]);
   });
 }
 
+/**
+ * Remove um exercício do dia. Se o dia ficar sem exercícios, a linha em
+ * workouts também é removida (equivalente ao antigo "delete database[date]").
+ */
 export function removeEntry(date, exerciseId) {
-  return mutateDay(date, (day) => {
-    const index = day.entries.findIndex((entry) => entry.exerciseId === exerciseId);
-    if (index === -1) return null;
-    return day.entries.splice(index, 1)[0];
+  return withTransaction(async (connection) => {
+    const [rows] = await connection.execute(
+      `SELECT ${ENTRY_COLUMNS}
+         FROM workout_entries e
+         JOIN workouts w ON w.id = e.workout_id
+        WHERE w.user_id = ? AND w.workout_date = ? AND e.exercise_id = ?
+        FOR UPDATE`,
+      [USER_ID, date, exerciseId],
+    );
+
+    const entry = rows[0];
+    if (!entry) return null;
+
+    await connection.execute('DELETE FROM workout_entries WHERE id = ?', [entry.id]);
+
+    const [remaining] = await connection.execute(
+      'SELECT COUNT(*) AS total FROM workout_entries WHERE workout_id = ?',
+      [entry.workout_id],
+    );
+
+    if (Number(remaining[0]?.total ?? 0) === 0) {
+      await connection.execute('DELETE FROM workouts WHERE id = ?', [entry.workout_id]);
+    } else {
+      await touchWorkout(connection, entry.workout_id);
+    }
+
+    return mapEntry(entry);
   });
 }

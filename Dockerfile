@@ -42,16 +42,9 @@ COPY --chown=node:node public ./public
 #   docker run ... node mock-api/server.js
 COPY --chown=node:node mock-api ./mock-api
 
-# data/workouts.json é criado em runtime; o diretório precisa ser gravável
-# pelo usuário "node" (uid 1000) que executa o processo.
-RUN mkdir -p /app/data && chown -R node:node /app/data
-
 USER node
 
 EXPOSE 3065
-
-# Volume anônimo por padrão; no compose usamos o volume nomeado "workouts-data".
-VOLUME ["/app/data"]
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
   CMD node -e "fetch('http://127.0.0.1:' + (process.env.PORT || 3000) + '/health').then((r) => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"

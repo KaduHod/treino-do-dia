@@ -15,4 +15,15 @@ export const config = {
   exercisesApiTimeoutMs: numberFromEnv(process.env.EXERCISES_API_TIMEOUT_MS, 5000),
   exercisesCacheTtlMs: numberFromEnv(process.env.EXERCISES_API_CACHE_TTL_MS, 60000),
   exercisesApiConcurrency: numberFromEnv(process.env.EXERCISES_API_CONCURRENCY, 6),
+  database: {
+    host: process.env.MYSQL_HOST || 'localhost',
+    port: numberFromEnv(process.env.MYSQL_PORT, 3306),
+    user: process.env.MYSQL_USER || 'treino',
+    password: process.env.MYSQL_PASSWORD || 'treino_dev',
+    name: process.env.MYSQL_DATABASE || 'treino',
+    connectionLimit: numberFromEnv(process.env.MYSQL_CONNECTION_LIMIT, 10),
+    // Enquanto não existe login, todos os treinos pertencem a este usuário
+    // (seed "default" criado por db/init/02-seed.sql).
+    defaultUserId: numberFromEnv(process.env.DEFAULT_USER_ID, 1),
+  },
 };
