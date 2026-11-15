@@ -22,8 +22,11 @@ WORKDIR /app
 # NODE_ENV=production: Express ativa o cache de views (templates são imutáveis
 # dentro da imagem) e evita reinstalar dependências por engano.
 ENV NODE_ENV=production \
-    PORT=3000 \
-    EXERCISES_API_URL=http://localhost:3055/api/v1
+    PORT=3065
+    # EXERCISES_API_URL=http://gymapi:3005/api/v1 \
+    # EXERCISES_API_AUTH_HEADER=Authorization \
+    # EXERCISES_API_AUTH_VALUE=Bearer [token]
+
 
 COPY --from=deps --chown=node:node /app/node_modules ./node_modules
 
@@ -45,7 +48,7 @@ RUN mkdir -p /app/data && chown -R node:node /app/data
 
 USER node
 
-EXPOSE 3000
+EXPOSE 3065
 
 # Volume anônimo por padrão; no compose usamos o volume nomeado "workouts-data".
 VOLUME ["/app/data"]

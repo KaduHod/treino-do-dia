@@ -10,7 +10,7 @@
   <script>
     // Aplica o tema salvo antes do primeiro paint (evita flash de tema errado).
     (function () {
-      var themes = ['terroso', 'meia-noite', 'oceano', 'ameixa', 'carmim'];
+      var themes = ['terroso', 'meia-noite', 'oceano', 'ameixa', 'carmim', 'noir'];
       try {
         var saved = localStorage.getItem('treino-theme');
         if (saved && themes.indexOf(saved) !== -1) {
@@ -198,7 +198,27 @@
       --glow-sage: rgb(128 24 44 / 0.30);
       --backdrop: rgb(0 0 0 / 0.70);
     }
-
+    [data-theme='noir'] {
+        color-scheme: dark;
+        --c-cream: 8 8 8;              /* fundo da página: quase preto puro */
+        --c-surface: 18 15 15;         /* cards/campos: preto levemente quente */
+        --c-ink: 240 236 235;          /* texto principal */
+        --c-bark: 200 190 189;         /* texto de apoio/links */
+        --c-moss: 112 20 36;           /* ação primária: bordô */
+        --c-olive: 150 138 138;        /* texto secundário/rótulos */
+        --c-sage: 74 38 44;            /* acento neutro (chips, "no treino") */
+        --c-sand: 42 31 33;            /* bordas e divisores */
+        --c-gold: 216 40 52;           /* destaque: vermelho vivo */
+        --c-on-primary: 255 240 238;   /* texto sobre bordô */
+        --c-primary-hover: 152 28 48;  /* hover da ação primária */
+        --c-inverted: 240 236 235;     /* superfície invertida (toast, botões discretos) */
+        --c-on-inverted: 8 8 8;        /* texto sobre inverted */
+        --shadow-card: 0 26px 50px -34px rgb(0 0 0 / 0.95);
+        --shadow-soft: 0 10px 22px -18px rgb(0 0 0 / 1);
+        --glow-gold: rgb(216 40 52 / 0.16);
+        --glow-sage: rgb(112 20 36 / 0.26);
+        --backdrop: rgb(0 0 0 / 0.80);
+    }
     html { background-color: rgb(var(--c-cream)); }
 
     body {
@@ -303,6 +323,7 @@
             <option value="oceano">Oceano</option>
             <option value="ameixa">Ameixa</option>
             <option value="carmim">Carmim</option>
+            <option value="noir">Noir</option>
           </select>
         </label>
       </div>

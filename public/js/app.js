@@ -3,7 +3,7 @@
   const DATE_INPUT_ID = 'day-date';
   const TOAST_ID = 'toast';
   const THEME_KEY = 'treino-theme';
-  const THEMES = ['terroso', 'meia-noite', 'oceano', 'ameixa', 'carmim'];
+  const THEMES = ['terroso', 'meia-noite', 'oceano', 'ameixa', 'carmim', 'noir'];
   const SAVED_FEEDBACK_MS = 2500;
 
   let savedTimers = [];
