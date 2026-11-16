@@ -9,5 +9,5 @@
 USE treino;
 
 INSERT INTO users (id, username, display_name)
-VALUES (1, 'default', 'Usuário padrão')
+VALUES (1, 'kaduhod', 'Carlos Alberto Ribas Júnior')
 ON DUPLICATE KEY UPDATE id = id;
