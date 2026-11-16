@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -20 534 140" width="534" height="140" role="img" aria-label="RASTRO">
+<g fill="none" stroke="#F0ECEB" stroke-width="16" stroke-linejoin="miter" stroke-linecap="butt">
+<path d="M8 100 V8 H38 A21 21 0 0 1 38 50 H8"/>
+<path d="M33 50 L52 76"/>
+<g transform="translate(86 0)"><path d="M8 100 V35 A27 27 0 0 1 62 35 V100"/><path d="M8 66 H62"/></g>
+<g transform="translate(170 0)"><path d="M62 28 C62 15 50 8 35 8 C20 8 8 15 8 28 C8 41 22 46 35 50 C48 54 62 59 62 72 C62 85 50 92 35 92 C20 92 8 85 8 72"/></g>
+<g transform="translate(254 0)"><path d="M0 8 H70"/><path d="M35 8 V100"/></g>
+<g transform="translate(338 0)"><path d="M8 100 V8 H38 A21 21 0 0 1 38 50 H8"/><path d="M33 50 L52 76"/></g>
+<g transform="translate(424 0)"><rect x="8" y="8" width="54" height="84" rx="27"/></g>
+</g>
+<circle cx="64" cy="92" r="8" fill="#F0ECEB"/>
+<circle cx="402" cy="92" r="8" fill="#F0ECEB"/>
+</svg>

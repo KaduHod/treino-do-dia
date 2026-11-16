@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-label="Ícone RASTRO">
+<rect width="1024" height="1024" fill="#080808"/>
+<g transform="translate(281.6 192) scale(6.4)">
+<g fill="none" stroke="#F0ECEB" stroke-width="16" stroke-linejoin="miter" stroke-linecap="butt">
+<path d="M8 100 V8 H38 A21 21 0 0 1 38 50 H8"/>
+<path d="M33 50 L52 76"/>
+</g>
+<circle cx="64" cy="92" r="8" fill="#D82834"/>
+</g>
+</svg>
